@@ -1,23 +1,27 @@
 import { createConfig } from "@ponder/core";
 import { http } from "viem";
 
-import { PrimitiveManagerAbi } from "./abis/PrimitiveManagerAbi";
+import { ORMPAbi } from "./abis/ORMPAbi";
 
 export default createConfig({
   networks: {
-    mainnet: {
-      chainId: 1,
-      transport: http(process.env.PONDER_RPC_URL_1),
+    tron_shasta: {
+      chainId: 2494104990,
+      transport: http("https://api.shasta.trongrid.io/jsonrpc"),
     },
   },
   contracts: {
-    PrimitiveManager: {
-      network: "mainnet",
-      abi: PrimitiveManagerAbi,
-      address: "0x54522dA62a15225C95b01bD61fF58b866C50471f",
-      startBlock: 14438081,
+    ORMP: {
+      abi: ORMPAbi,
+      address: "0x00000000001523057a05d6293C1e5171eE33eE0A",
+      network: {
+        tron_shasta: {
+          startBlock: 42281878,
+          address: "0x4a7C839b0a32c90ad3b397875df73B905b1Bf0CA", // TGm4AeM42R9ocbbN3ibrDtf5kkQVTTFMYS
+        },
+      },
       filter: {
-        event: "Swap",
+        event: ["MessageAccepted", "MessageDispatched", "MessageAssigned"],
       },
     },
   },
