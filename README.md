@@ -1,5 +1,9 @@
 # Ponder for ORMP related components
 
+## ENV
+
+export INFURA_API_KEY=<YOUR_INFURA_API_KEY>
+
 ## Local run
 
 ```bash
