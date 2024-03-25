@@ -6,7 +6,8 @@ import { ORMPAbi as ORMPAbiV1 } from "./abis/v1/ORMPAbi";
 import { ORMPOracleAbi as ORMPOracleAbiV1 } from "./abis/v1/ORMPOracleAbi";
 import { ORMPRelayerAbi as ORMPRelayerAbiV1 } from "./abis/v1/ORMPRelayerAbi";
 
-const INFURA_API_KEY = process.env.INFURA_API_KEY;
+// const INFURA_API_KEY = process.env.INFURA_API_KEY;
+const INFURA_API_KEY = null;
 const MAX_REQUESTS_PER_SECOND = 1;
 
 const v1Networks = {
@@ -108,9 +109,9 @@ export default createConfig({
         //   ? `https://mainnet.infura.io/v3/de35badc1ec7472da2967dd0248bd60c`
         //   : "https://ethereum.publicnode.com"
 
-          "https://ethereum.publicnode.com"
+        "https://ethereum.publicnode.com"
       ),
-      
+
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     polygon: {
