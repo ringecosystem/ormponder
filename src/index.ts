@@ -6,7 +6,7 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
     id: event.log.id,
     data: {
       msgHash: event.args.msgHash,
-      root: event.args.root,
+      root: `${event.args.root}`,
       message: JSON.stringify(event.args.message),
     },
   });
@@ -43,7 +43,7 @@ ponder.on("ORMPV1:MessageAccepted", async ({ event, context }) => {
     id: event.log.id,
     data: {
       msgHash: event.args.msgHash,
-      root: event.args.root,
+      root: `${event.args.root}`,
       message: JSON.stringify(event.args.message),
     },
   });

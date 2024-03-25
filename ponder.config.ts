@@ -6,6 +6,8 @@ import { ORMPAbi as ORMPAbiV1 } from "./abis/v1/ORMPAbi";
 import { ORMPOracleAbi as ORMPOracleAbiV1 } from "./abis/v1/ORMPOracleAbi";
 import { ORMPRelayerAbi as ORMPRelayerAbiV1 } from "./abis/v1/ORMPRelayerAbi";
 
+const INFURA_API_KEY = process.env.INFURA_API_KEY;
+
 const v1Networks = {
   // testnets
   arbitrum_sepolia: {
@@ -17,25 +19,25 @@ const v1Networks = {
   sepolia: {
     startBlock: 4728915,
   },
-  // // mainnets
-  // arbitrum: {
-  //   startBlock: 148555417,
-  // },
-  // blast: {
-  //   startBlock: 364290,
-  // },
-  // crab: {
-  //   startBlock: 1658340,
-  // },
-  // darwinia: {
-  //   startBlock: 1389410,
-  // },
-  // ethereum: {
-  //   startBlock: 18753083,
-  // },
-  // polygon: {
-  //   startBlock: 54050910,
-  // },
+  // mainnets
+  arbitrum: {
+    startBlock: 148555417,
+  },
+  blast: {
+    startBlock: 364290,
+  },
+  crab: {
+    startBlock: 1658340,
+  },
+  darwinia: {
+    startBlock: 1389410,
+  },
+  ethereum: {
+    startBlock: 18753083,
+  },
+  polygon: {
+    startBlock: 54050910,
+  },
 };
 
 export default createConfig({
@@ -43,7 +45,11 @@ export default createConfig({
     // testnets
     arbitrum_sepolia: {
       chainId: 421614,
-      transport: http("https://arbitrum-sepolia-rpc.publicnode.com"),
+      transport: http(
+        INFURA_API_KEY
+          ? `https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`
+          : "https://arbitrum-sepolia-rpc.publicnode.com"
+      ),
     },
     pangolin: {
       chainId: 43,
@@ -51,7 +57,11 @@ export default createConfig({
     },
     sepolia: {
       chainId: 11155111,
-      transport: http("https://ethereum-sepolia.publicnode.com"),
+      transport: http(
+        INFURA_API_KEY
+          ? `https://sepolia.infura.io/v3/${INFURA_API_KEY}`
+          : "https://ethereum-sepolia.publicnode.com"
+      ),
     },
     tron_shasta: {
       chainId: 2494104990,
@@ -60,11 +70,19 @@ export default createConfig({
     // mainnets
     arbitrum: {
       chainId: 42161,
-      transport: http("https://arbitrum-one.publicnode.com"),
+      transport: http(
+        INFURA_API_KEY
+          ? `https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}`
+          : "https://arbitrum-one.publicnode.com"
+      ),
     },
     blast: {
       chainId: 81457,
-      transport: http("https://rpc.blast.io"),
+      transport: http(
+        INFURA_API_KEY
+          ? `https://blast-mainnet.infura.io/v3/${INFURA_API_KEY}`
+          : "https://rpc.blast.io"
+      ),
     },
     crab: {
       chainId: 44,
@@ -76,11 +94,19 @@ export default createConfig({
     },
     ethereum: {
       chainId: 1,
-      transport: http("https://ethereum.publicnode.com"),
+      transport: http(
+        INFURA_API_KEY
+          ? `https://mainnet.infura.io/v3/${INFURA_API_KEY}`
+          : "https://ethereum.publicnode.com"
+      ),
     },
     polygon: {
       chainId: 137,
-      transport: http("https://polygon-bor-rpc.publicnode.com"),
+      transport: http(
+        INFURA_API_KEY
+          ? `https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}`
+          : "https://polygon-bor-rpc.publicnode.com"
+      ),
     },
   },
   contracts: {
