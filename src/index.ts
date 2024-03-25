@@ -1,22 +1,21 @@
 import { ponder } from "@/generated";
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-interface BigInt {
-  /** Convert to BigInt to string form in JSON.stringify */
-  toJSON: () => string;
-}
-BigInt.prototype.toJSON = function () {
-  return this.toString();
-};
-
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
+  const message = event.args.message;
   await MessageAcceptedV2.create({
     id: event.log.id,
     data: {
       msgHash: event.args.msgHash,
       root: `${event.args.root}`,
-      message: JSON.stringify(event.args.message),
+      messageChannel: message.channel,
+      messageIndex: message.index,
+      messageFromChainId: message.fromChainId,
+      messageFrom: message.from,
+      messageToChainId: message.toChainId,
+      messageTo: message.to,
+      messageGasLimit: message.gasLimit,
+      messageEncoded: message.encoded,
     },
   });
 });
@@ -48,12 +47,20 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
 
 ponder.on("ORMPV1:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV1 } = context.db;
+  const message = event.args.message;
   await MessageAcceptedV1.create({
     id: event.log.id,
     data: {
       msgHash: event.args.msgHash,
       root: `${event.args.root}`,
-      message: JSON.stringify(event.args.message),
+      messageChannel: message.channel,
+      messageIndex: message.index,
+      messageFromChainId: message.fromChainId,
+      messageFrom: message.from,
+      messageToChainId: message.toChainId,
+      messageTo: message.to,
+      messageGasLimit: message.gasLimit,
+      messageEncoded: message.encoded,
     },
   });
 });
