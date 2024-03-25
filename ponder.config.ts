@@ -7,6 +7,7 @@ import { ORMPOracleAbi as ORMPOracleAbiV1 } from "./abis/v1/ORMPOracleAbi";
 import { ORMPRelayerAbi as ORMPRelayerAbiV1 } from "./abis/v1/ORMPRelayerAbi";
 
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
+const MAX_REQUESTS_PER_SECOND = 9;
 
 const v1Networks = {
   // testnets
@@ -50,10 +51,12 @@ export default createConfig({
           ? `https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`
           : "https://arbitrum-sepolia-rpc.publicnode.com"
       ),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     pangolin: {
       chainId: 43,
       transport: http("https://pangolin-rpc.darwinia.network"),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     sepolia: {
       chainId: 11155111,
@@ -62,10 +65,12 @@ export default createConfig({
           ? `https://sepolia.infura.io/v3/${INFURA_API_KEY}`
           : "https://ethereum-sepolia.publicnode.com"
       ),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     tron_shasta: {
       chainId: 2494104990,
       transport: http("https://api.shasta.trongrid.io/jsonrpc"),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     // mainnets
     arbitrum: {
@@ -75,6 +80,7 @@ export default createConfig({
           ? `https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}`
           : "https://arbitrum-one.publicnode.com"
       ),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     blast: {
       chainId: 81457,
@@ -83,22 +89,29 @@ export default createConfig({
           ? `https://blast-mainnet.infura.io/v3/${INFURA_API_KEY}`
           : "https://rpc.blast.io"
       ),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     crab: {
       chainId: 44,
       transport: http("https://crab-rpc.darwinia.network"),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     darwinia: {
       chainId: 46,
       transport: http("http://c2.collator.itering.io:9944"),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     ethereum: {
       chainId: 1,
       transport: http(
-        INFURA_API_KEY
-          ? `https://mainnet.infura.io/v3/${INFURA_API_KEY}`
-          : "https://ethereum.publicnode.com"
+        // INFURA_API_KEY
+        //   ? `https://mainnet.infura.io/v3/de35badc1ec7472da2967dd0248bd60c`
+        //   : "https://ethereum.publicnode.com"
+
+          "https://ethereum.publicnode.com"
       ),
+      
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     polygon: {
       chainId: 137,
@@ -107,6 +120,7 @@ export default createConfig({
           ? `https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}`
           : "https://polygon-bor-rpc.publicnode.com"
       ),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },
   contracts: {

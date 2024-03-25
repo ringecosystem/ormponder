@@ -1,5 +1,14 @@
 import { ponder } from "@/generated";
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+interface BigInt {
+  /** Convert to BigInt to string form in JSON.stringify */
+  toJSON: () => string;
+}
+BigInt.prototype.toJSON = function () {
+  return this.toString();
+};
+
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
   await MessageAcceptedV2.create({
