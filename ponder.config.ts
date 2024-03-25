@@ -7,7 +7,7 @@ import { ORMPOracleAbi as ORMPOracleAbiV1 } from "./abis/v1/ORMPOracleAbi";
 import { ORMPRelayerAbi as ORMPRelayerAbiV1 } from "./abis/v1/ORMPRelayerAbi";
 
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
-const MAX_REQUESTS_PER_SECOND = 5;
+const MAX_REQUESTS_PER_SECOND = 1;
 
 const v1Networks = {
   // testnets
