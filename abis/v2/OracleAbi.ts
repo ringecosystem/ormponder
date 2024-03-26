@@ -1,4 +1,4 @@
-export const ORMPOracleAbi = [
+export const OracleAbi = [
   {
     inputs: [
       { internalType: "address", name: "dao", type: "address" },
