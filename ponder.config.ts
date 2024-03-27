@@ -9,6 +9,7 @@ import { ORMPRelayerAbi as ORMPRelayerAbiV1 } from "./abis/v1/ORMPRelayerAbi";
 // const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const INFURA_API_KEY = null;
 const MAX_REQUESTS_PER_SECOND = 1;
+const POLYGON_INFURA_API_KEY = process.env.INFURA_API_KEY;
 
 const v1Networks = {
   // testnets
@@ -117,8 +118,8 @@ export default createConfig({
     polygon: {
       chainId: 137,
       transport: http(
-        INFURA_API_KEY
-          ? `https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}`
+        POLYGON_INFURA_API_KEY
+          ? `https://polygon-mainnet.infura.io/v3/${POLYGON_INFURA_API_KEY}`
           : "https://polygon-bor-rpc.publicnode.com"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
