@@ -1,9 +1,6 @@
 export const ORMPOracleAbi = [
   {
-    inputs: [
-      { internalType: "address", name: "dao", type: "address" },
-      { internalType: "address", name: "ormp", type: "address" },
-    ],
+    inputs: [{ internalType: "address", name: "dao", type: "address" }],
     stateMutability: "nonpayable",
     type: "constructor",
   },
@@ -87,13 +84,6 @@ export const ORMPOracleAbi = [
     ],
     name: "Withdrawal",
     type: "event",
-  },
-  {
-    inputs: [],
-    name: "PROTOCOL",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
   },
   {
     inputs: [{ internalType: "address", name: "", type: "address" }],
@@ -190,6 +180,13 @@ export const ORMPOracleAbi = [
     name: "verifyMessageProof",
     outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "version",
+    outputs: [{ internalType: "string", name: "", type: "string" }],
+    stateMutability: "pure",
     type: "function",
   },
   {

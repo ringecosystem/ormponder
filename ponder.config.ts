@@ -129,12 +129,20 @@ export default createConfig({
     // === V2
     ORMPV2: {
       abi: ORMPAbiV2,
-      address: "0x00000000001523057a05d6293C1e5171eE33eE0A",
+      address: "0x62271F7698a52E1e675E310cD239F5A46fcE2443",
       network: {
+        // testnets
+        sepolia: {
+          startBlock: 5579141
+        },
+        arbitrum_sepolia: {
+          startBlock: 27875636
+        },
         tron_shasta: {
           startBlock: 42281878,
           address: "0x4a7C839b0a32c90ad3b397875df73B905b1Bf0CA", // TGm4AeM42R9ocbbN3ibrDtf5kkQVTTFMYS
         },
+        // mainnets
       },
       filter: {
         event: ["MessageAccepted", "MessageDispatched", "MessageAssigned"],
