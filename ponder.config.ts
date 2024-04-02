@@ -5,6 +5,7 @@ import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { ORMPAbi as ORMPAbiV1 } from "./abis/v1/ORMPAbi";
 import { ORMPOracleAbi as ORMPOracleAbiV1 } from "./abis/v1/ORMPOracleAbi";
 import { ORMPRelayerAbi as ORMPRelayerAbiV1 } from "./abis/v1/ORMPRelayerAbi";
+import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 
 // const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const INFURA_API_KEY = null;
@@ -133,7 +134,7 @@ export default createConfig({
       network: {
         // testnets
         sepolia: {
-          startBlock: 5579141
+          startBlock: 5579141,
         },
         arbitrum_sepolia: {
           startBlock: 27875636
@@ -147,6 +148,15 @@ export default createConfig({
       filter: {
         event: ["MessageAccepted", "MessageDispatched", "MessageAssigned"],
       },
+    },
+    SignaturePub: {
+      abi: SignaturePubAbi,
+      address: "0x57dd62e0986a61a269c769b107a5a7952d73b7ed",
+      network: {
+        darwinia: {
+          startBlock: 2394555,
+        }
+      }
     },
 
     // === V1
