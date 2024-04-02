@@ -4,6 +4,7 @@ export default createSchema((p) => ({
   // === V2
   MessageAcceptedV2: p.createTable({
     id: p.string(),
+    logIndex: p.int(),
     msgHash: p.string(),
     root: p.string(),
     // message struct
@@ -15,6 +16,13 @@ export default createSchema((p) => ({
     messageTo: p.string(),
     messageGasLimit: p.bigint(),
     messageEncoded: p.string(),
+    // extra
+    oracleAssigned: p.boolean().optional(),
+    oracleAssignedFee: p.bigint().optional(),
+    oracleLogIndex: p.int().optional(),
+    relayerAssigned: p.boolean().optional(),
+    relayerAssignedFee: p.bigint().optional(),
+    relayerLogIndex: p.int().optional(),
   }),
   MessageDispatchedV2: p.createTable({
     id: p.string(),
