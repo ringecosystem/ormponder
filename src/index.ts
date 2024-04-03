@@ -45,6 +45,21 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
   });
 });
 
+ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
+  const { SignatureSubmittion } = context.db;
+  await SignatureSubmittion.create({
+    id: event.log.id,
+    data: {
+      chainId: event.args.chainId,
+      msgIndex: event.args.msgIndex,
+      signer: event.args.signer,
+      signature: event.args.signature,
+      data: event.args.data,
+    },
+  });
+});
+
+// V1
 ponder.on("ORMPV1:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV1 } = context.db;
   const message = event.args.message;

@@ -29,6 +29,14 @@ export default createSchema((p) => ({
     oracleFee: p.bigint(),
     relayerFee: p.bigint(),
   }),
+  SignatureSubmittion: p.createTable({
+    id: p.string(),
+    chainId: p.bigint(),
+    msgIndex: p.bigint(),
+    signer: p.string(),
+    signature: p.string(),
+    data: p.string(),
+  }),
   // === V1
   MessageAcceptedV1: p.createTable({
     id: p.string(),

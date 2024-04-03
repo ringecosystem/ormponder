@@ -1,0 +1,46 @@
+export const SignaturePubAbi = [
+  {
+    name: "SignatureSubmittion",
+    type: "event",
+    inputs: [
+      {
+        name: "chainId",
+        type: "uint256",
+        indexed: true,
+        internalType: "uint256",
+      },
+      {
+        name: "msgIndex",
+        type: "uint256",
+        indexed: true,
+        internalType: "uint256",
+      },
+      {
+        name: "signer",
+        type: "address",
+        indexed: true,
+        internalType: "address",
+      },
+      {
+        name: "signature",
+        type: "bytes",
+        indexed: false,
+        internalType: "bytes",
+      },
+      { name: "data", type: "bytes", indexed: false, internalType: "bytes" },
+    ],
+    anonymous: false,
+  },
+  {
+    name: "submit",
+    type: "function",
+    inputs: [
+      { name: "chainId", type: "uint256", internalType: "uint256" },
+      { name: "msgIndex", type: "uint256", internalType: "uint256" },
+      { name: "signature", type: "bytes", internalType: "bytes" },
+      { name: "data", type: "bytes", internalType: "bytes" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+] as const;
