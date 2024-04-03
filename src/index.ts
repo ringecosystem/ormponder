@@ -6,6 +6,7 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   await MessageAcceptedV2.create({
     id: event.log.id,
     data: {
+      logIndex: event.log.logIndex,
       msgHash: event.args.msgHash,
       root: `${event.args.root}`,
       messageChannel: message.channel,
@@ -32,7 +33,7 @@ ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
 });
 
 ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
-  const { MessageAssignedV2 } = context.db;
+  const { MessageAssignedV2, MessageAcceptedV2 } = context.db;
   await MessageAssignedV2.create({
     id: event.log.id,
     data: {
@@ -43,6 +44,36 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
       relayerFee: event.args.relayerFee,
     },
   });
+  // filter other relayer
+  if (
+    !["0xb773319D6Eb7f34b8EAB26Ea5F5ea694E7EF6362"].includes(event.args.relayer)
+  ) {
+    await MessageAcceptedV2.updateMany({
+      where: {
+        msgHash: {
+          equals: event.args.msgHash,
+        },
+      },
+      data: {
+        oracleAssigned: true,
+        oracleAssignedFee: event.args.relayerFee,
+        oracleLogIndex: event.log.logIndex,
+      },
+    });
+  }
+  // filter other oracle
+  if (
+    !["0xDD8c7c84DaCBbB60F1CfC4f10046245da1E0f33D"].includes(event.args.oracle)
+  ) {
+    await MessageAcceptedV2.updateMany({
+      where: {},
+      data: {
+        relayerAssigned: true,
+        relayerAssignedFee: event.args.oracleFee,
+        relayerLogIndex: event.log.logIndex,
+      },
+    });
+  }
 });
 
 ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
