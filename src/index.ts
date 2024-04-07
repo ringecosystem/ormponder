@@ -1,4 +1,10 @@
 import { ponder } from "@/generated";
+import axios from "axios";
+import cron  from "node-cron";
+
+cron.schedule("*/3 * * * *", async () => {
+  await axios.get("https://hc-ping.com/5B4xQyjO7c1ReOiZiaS4yQ/ormponder");
+});
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
