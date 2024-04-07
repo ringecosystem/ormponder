@@ -1,10 +1,19 @@
 import { ponder } from "@/generated";
 import axios from "axios";
-import cron  from "node-cron";
+import cron from "node-cron";
 
+// health check
 cron.schedule("*/3 * * * *", async () => {
   await axios.get("https://hc-ping.com/5B4xQyjO7c1ReOiZiaS4yQ/ormponder");
 });
+
+const listenRelayer = [
+  "0xb773319D6Eb7f34b8EAB26Ea5F5ea694E7EF6362",
+];
+const listenOracle = [
+  "0xDD8c7c84DaCBbB60F1CfC4f10046245da1E0f33D",
+  "0x0f14341A7f464320319025540E8Fe48Ad0fe5aec",
+];
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
@@ -51,9 +60,7 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
     },
   });
   // filter other relayer
-  if (
-    !["0xb773319D6Eb7f34b8EAB26Ea5F5ea694E7EF6362"].includes(event.args.relayer)
-  ) {
+  if (listenRelayer.includes(event.args.relayer)) {
     await MessageAcceptedV2.updateMany({
       where: {
         msgHash: {
@@ -61,22 +68,42 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
         },
       },
       data: {
-        oracleAssigned: true,
-        oracleAssignedFee: event.args.relayerFee,
-        oracleLogIndex: event.log.logIndex,
+        relayer: event.args.relayer,
+        relayerAssigned: true,
+        relayerAssignedFee: event.args.relayerFee,
+        relayerLogIndex: event.log.logIndex,
       },
     });
   }
   // filter other oracle
-  if (
-    !["0xDD8c7c84DaCBbB60F1CfC4f10046245da1E0f33D"].includes(event.args.oracle)
-  ) {
+  if (listenOracle.includes(event.args.oracle)) {
     await MessageAcceptedV2.updateMany({
-      where: {},
+      where: {
+        msgHash: {
+          equals: event.args.msgHash,
+        },
+      },
       data: {
-        relayerAssigned: true,
-        relayerAssignedFee: event.args.oracleFee,
-        relayerLogIndex: event.log.logIndex,
+        oracle: event.args.oracle,
+        oracleAssigned: true,
+        oracleAssignedFee: event.args.oracleFee,
+        oracleLogIndex: event.log.logIndex,
+      },
+    });
+  }
+});
+
+ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
+  const { HashImportedV2 } = context.db;
+  // filter other oracle
+  if (listenOracle.includes(event.args.oracle)) {
+    await HashImportedV2.create({
+      id: event.log.id,
+      data: {
+        srcChainId: event.args.srcChainId,
+        oracle: event.args.oracle,
+        lookupKey: event.args.lookupKey,
+        hash: event.args.hash,
       },
     });
   }
@@ -92,62 +119,6 @@ ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
       signer: event.args.signer,
       signature: event.args.signature,
       data: event.args.data,
-    },
-  });
-});
-
-// V1
-ponder.on("ORMPV1:MessageAccepted", async ({ event, context }) => {
-  const { MessageAcceptedV1 } = context.db;
-  const message = event.args.message;
-  await MessageAcceptedV1.create({
-    id: event.log.id,
-    data: {
-      msgHash: event.args.msgHash,
-      root: `${event.args.root}`,
-      messageChannel: message.channel,
-      messageIndex: message.index,
-      messageFromChainId: message.fromChainId,
-      messageFrom: message.from,
-      messageToChainId: message.toChainId,
-      messageTo: message.to,
-      messageGasLimit: message.gasLimit,
-      messageEncoded: message.encoded,
-    },
-  });
-});
-
-ponder.on("ORMPV1:MessageDispatched", async ({ event, context }) => {
-  const { MessageDispatchedV1 } = context.db;
-  await MessageDispatchedV1.create({
-    id: event.log.id,
-    data: {
-      msgHash: event.args.msgHash,
-      dispatchResult: event.args.dispatchResult,
-    },
-  });
-});
-
-ponder.on("ORMPOracleV1:Assigned", async ({ event, context }) => {
-  const { OracleAssignedV1 } = context.db;
-  await OracleAssignedV1.create({
-    id: event.log.id,
-    data: {
-      msgHash: event.args.msgHash,
-      fee: event.args.fee,
-    },
-  });
-});
-
-ponder.on("ORMPRelayerV1:Assigned", async ({ event, context }) => {
-  const { RelayerAssignedV1 } = context.db;
-  await RelayerAssignedV1.create({
-    id: event.log.id,
-    data: {
-      msgHash: event.args.msgHash,
-      fee: event.args.fee,
-      params: event.args.params,
-      proof: JSON.stringify(event.args.proof),
     },
   });
 });
