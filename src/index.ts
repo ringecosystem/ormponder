@@ -122,6 +122,7 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
         srcChainId: event.args.srcChainId,
         oracle: event.args.oracle,
         lookupKey: event.args.lookupKey,
+        srcBlockNumber: BigInt(event.args.lookupKey),
         hash: event.args.hash,
       },
     });
