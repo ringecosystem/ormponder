@@ -48,6 +48,37 @@ export const ORMPAbi = [
     inputs: [
       {
         indexed: true,
+        internalType: "uint256",
+        name: "srcChainId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "oracle",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "bytes32",
+        name: "lookupKey",
+        type: "bytes32",
+      },
+      {
+        indexed: false,
+        internalType: "bytes32",
+        name: "hash",
+        type: "bytes32",
+      },
+    ],
+    name: "HashImported",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
         internalType: "bytes32",
         name: "msgHash",
         type: "bytes32",
@@ -212,6 +243,28 @@ export const ORMPAbi = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "", type: "address" },
+      { internalType: "uint256", name: "", type: "uint256" },
+      { internalType: "bytes32", name: "", type: "bytes32" },
+    ],
+    name: "hashLookup",
+    outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "srcChainId", type: "uint256" },
+      { internalType: "bytes32", name: "lookupKey", type: "bytes32" },
+      { internalType: "bytes32", name: "hash_", type: "bytes32" },
+    ],
+    name: "importHash",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {

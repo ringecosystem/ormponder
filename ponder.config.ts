@@ -2,47 +2,12 @@ import { createConfig } from "@ponder/core";
 import { http } from "viem";
 
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
-import { ORMPAbi as ORMPAbiV1 } from "./abis/v1/ORMPAbi";
-import { ORMPOracleAbi as ORMPOracleAbiV1 } from "./abis/v1/ORMPOracleAbi";
-import { ORMPRelayerAbi as ORMPRelayerAbiV1 } from "./abis/v1/ORMPRelayerAbi";
 import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 
 // const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const INFURA_API_KEY = null;
 const MAX_REQUESTS_PER_SECOND = 1;
 const POLYGON_INFURA_API_KEY = process.env.INFURA_API_KEY;
-
-const v1Networks = {
-  // testnets
-  arbitrum_sepolia: {
-    startBlock: 860637,
-  },
-  pangolin: {
-    startBlock: 2275723,
-  },
-  sepolia: {
-    startBlock: 4728915,
-  },
-  // mainnets
-  arbitrum: {
-    startBlock: 148555417,
-  },
-  blast: {
-    startBlock: 364290,
-  },
-  crab: {
-    startBlock: 1658340,
-  },
-  darwinia: {
-    startBlock: 1389410,
-  },
-  ethereum: {
-    startBlock: 18753083,
-  },
-  polygon: {
-    startBlock: 54050910,
-  },
-};
 
 export default createConfig({
   networks: {
@@ -130,14 +95,14 @@ export default createConfig({
     // === V2
     ORMPV2: {
       abi: ORMPAbiV2,
-      address: "0x62271F7698a52E1e675E310cD239F5A46fcE2443",
+      address: "0x38540e6b6678d32A141fEC10Dd39744bc46DAcC8",
       network: {
         // testnets
         sepolia: {
           startBlock: 5579141,
         },
         arbitrum_sepolia: {
-          startBlock: 27875636
+          startBlock: 31200402
         },
         tron_shasta: {
           startBlock: 42281878,
@@ -146,7 +111,7 @@ export default createConfig({
         // mainnets
       },
       filter: {
-        event: ["MessageAccepted", "MessageDispatched", "MessageAssigned"],
+        event: ["MessageAccepted", "MessageDispatched", "MessageAssigned", "HashImported"],
       },
     },
     SignaturePub: {
@@ -154,35 +119,9 @@ export default createConfig({
       address: "0x57dd62e0986a61a269c769b107a5a7952d73b7ed",
       network: {
         darwinia: {
-          startBlock: 2394555,
+          startBlock: 2430989,
         }
       }
-    },
-
-    // === V1
-    ORMPV1: {
-      abi: ORMPAbiV1,
-      address: "0x00000000001523057a05d6293C1e5171eE33eE0A",
-      network: v1Networks,
-      filter: {
-        event: ["MessageAccepted", "MessageDispatched"],
-      },
-    },
-    ORMPOracleV1: {
-      abi: ORMPOracleAbiV1,
-      address: "0x0000000003ebeF32D8f0ED406a5CA8805c80AFba",
-      network: v1Networks,
-      filter: {
-        event: ["Assigned"],
-      },
-    },
-    ORMPRelayerV1: {
-      abi: ORMPRelayerAbiV1,
-      address: "0x0000000000808fE9bDCc1d180EfbF5C53552a6b1",
-      network: v1Networks,
-      filter: {
-        event: ["Assigned"],
-      },
     },
   },
 });
