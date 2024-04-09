@@ -35,6 +35,11 @@ export default createConfig({
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
+    takio_katla: {
+      chainId: 167008,
+      transport: http("https://rpc.katla.taiko.xyz"),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+    },
     tron_shasta: {
       chainId: 2494104990,
       transport: http("https://api.shasta.trongrid.io/jsonrpc"),
@@ -98,11 +103,17 @@ export default createConfig({
       address: "0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4",
       network: {
         // testnets
+        pangolin: {
+          startBlock: 2658409,
+        },
         sepolia: {
           startBlock: 5579141,
         },
         arbitrum_sepolia: {
-          startBlock: 31200402
+          startBlock: 31200402,
+        },
+        takio_katla: {
+          startBlock: 772664,
         },
         tron_shasta: {
           startBlock: 42281878,
@@ -111,7 +122,12 @@ export default createConfig({
         // mainnets
       },
       filter: {
-        event: ["MessageAccepted", "MessageDispatched", "MessageAssigned", "HashImported"],
+        event: [
+          "MessageAccepted",
+          "MessageDispatched",
+          "MessageAssigned",
+          "HashImported",
+        ],
       },
     },
     SignaturePub: {
@@ -120,8 +136,8 @@ export default createConfig({
       network: {
         darwinia: {
           startBlock: 2442860,
-        }
-      }
+        },
+      },
     },
   },
 });
