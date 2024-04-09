@@ -75,8 +75,9 @@ export default createSchema((p) => ({
     transactionHash: p.string(),
 
     chainId: p.bigint(),
+    channel: p.hex(),
     msgIndex: p.bigint(),
-    signer: p.string(),
+    signer: p.hex(),
     signature: p.string(),
     data: p.string(),
   }),

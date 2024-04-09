@@ -9,6 +9,10 @@ const listenOracle = [
   "0xDD8c7c84DaCBbB60F1CfC4f10046245da1E0f33D",
   "0x0f14341A7f464320319025540E8Fe48Ad0fe5aec",
 ];
+const listenSignature = [
+  // channel
+  "0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4",
+];
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
@@ -131,18 +135,22 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
 
 ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
   const { SignatureSubmittion } = context.db;
-  await SignatureSubmittion.create({
-    id: event.log.id,
-    data: {
-      blockNumber: event.block.number,
-      blockTimestamp: event.block.timestamp,
-      transactionHash: event.transaction.hash,
+  // filter other channels
+  if (listenSignature.includes(event.args.channel)) {
+    await SignatureSubmittion.create({
+      id: event.log.id,
+      data: {
+        blockNumber: event.block.number,
+        blockTimestamp: event.block.timestamp,
+        transactionHash: event.transaction.hash,
 
-      chainId: event.args.chainId,
-      msgIndex: event.args.msgIndex,
-      signer: event.args.signer,
-      signature: event.args.signature,
-      data: event.args.data,
-    },
-  });
+        chainId: event.args.chainId,
+        channel: event.args.channel,
+        msgIndex: event.args.msgIndex,
+        signer: event.args.signer,
+        signature: event.args.signature,
+        data: event.args.data,
+      },
+    });
+  }
 });

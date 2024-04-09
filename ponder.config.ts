@@ -95,7 +95,7 @@ export default createConfig({
     // === V2
     ORMPV2: {
       abi: ORMPAbiV2,
-      address: "0x38540e6b6678d32A141fEC10Dd39744bc46DAcC8",
+      address: "0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4",
       network: {
         // testnets
         sepolia: {
@@ -116,10 +116,10 @@ export default createConfig({
     },
     SignaturePub: {
       abi: SignaturePubAbi,
-      address: "0x57dd62e0986a61a269c769b107a5a7952d73b7ed",
+      address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
       network: {
         darwinia: {
-          startBlock: 2430989,
+          startBlock: 2442860,
         }
       }
     },
