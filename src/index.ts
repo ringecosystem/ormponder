@@ -4,15 +4,9 @@ import cron from "node-cron";
 
 let cronRun = false;
 
-const listenRelayer = ["0xb773319D6Eb7f34b8EAB26Ea5F5ea694E7EF6362"];
-const listenOracle = [
-  "0xDD8c7c84DaCBbB60F1CfC4f10046245da1E0f33D",
-  "0x0f14341A7f464320319025540E8Fe48Ad0fe5aec",
-];
-const listenSignature = [
-  // channel
-  "0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4",
-];
+const listenRelayer = ["0x305cdd9C20adC44BdD722B6A37F49Cb439623E49"];
+const listenOracle = ["0xf64a5353Cf2Da7EE514F53Ee949c43E1BC4f494e"];
+const listenSignature = ["0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4"];
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
