@@ -15,8 +15,8 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
       transactionIndex: event.log.transactionIndex,
-
       logIndex: event.log.logIndex,
+
       msgHash: event.args.msgHash,
       root: `${event.args.root}`,
       messageChannel: message.channel,
@@ -41,6 +41,7 @@ ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
       transactionIndex: event.log.transactionIndex,
+      logIndex: event.log.logIndex,
 
       msgHash: event.args.msgHash,
       dispatchResult: event.args.dispatchResult,
@@ -58,6 +59,7 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
       transactionIndex: event.log.transactionIndex,
+      logIndex: event.log.logIndex,
 
       msgHash: event.args.msgHash,
       oracle: event.args.oracle,
@@ -112,6 +114,7 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
         transactionIndex: event.log.transactionIndex,
+        logIndex: event.log.logIndex,
 
         srcChainId: event.args.srcChainId,
         oracle: event.args.oracle,
@@ -135,6 +138,7 @@ ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
         transactionIndex: event.log.transactionIndex,
+        logIndex: event.log.logIndex,
 
         sChainId: event.args.chainId,
         channel: event.args.channel,
