@@ -1,8 +1,4 @@
 import { ponder } from "@/generated";
-import axios from "axios";
-import cron from "node-cron";
-
-let cronRun = false;
 
 const listenRelayer = ["0x305cdd9C20adC44BdD722B6A37F49Cb439623E49"];
 const listenOracle = ["0xf64a5353Cf2Da7EE514F53Ee949c43E1BC4f494e"];
@@ -99,14 +95,6 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
 });
 
 ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
-  if (!cronRun) {
-    // health check
-    cron.schedule("* * * * *", async () => {
-      await axios.get("https://hc-ping.com/5B4xQyjO7c1ReOiZiaS4yQ/ormponder");
-    });
-    cronRun = true;
-  }
-
   const { HashImportedV2 } = context.db;
   // filter other oracle
   if (listenOracle.includes(event.args.oracle)) {
