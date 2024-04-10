@@ -34,6 +34,7 @@ ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
   await MessageDispatchedV2.create({
     id: event.log.id,
     data: {
+      chainId: BigInt(context.network.chainId),
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,

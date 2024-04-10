@@ -33,6 +33,7 @@ export default createSchema((p) => ({
   }),
   MessageDispatchedV2: p.createTable({
     id: p.string(),
+    chainId: p.bigint(),
 
     blockNumber: p.bigint(),
     blockTimestamp: p.bigint(),
