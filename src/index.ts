@@ -8,11 +8,13 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
   const message = event.args.message;
   await MessageAcceptedV2.create({
-    id: event.log.id,
+    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
     data: {
+      chainId: context.network.chainId,
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
+      transactionIndex: event.log.transactionIndex,
 
       logIndex: event.log.logIndex,
       msgHash: event.args.msgHash,
@@ -32,11 +34,13 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
 ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
   const { MessageDispatchedV2 } = context.db;
   await MessageDispatchedV2.create({
-    id: event.log.id,
+    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
     data: {
+      chainId: context.network.chainId,
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
+      transactionIndex: event.log.transactionIndex,
 
       msgHash: event.args.msgHash,
       dispatchResult: event.args.dispatchResult,
@@ -47,11 +51,13 @@ ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
 ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
   const { MessageAssignedV2, MessageAcceptedV2 } = context.db;
   await MessageAssignedV2.create({
-    id: event.log.id,
+    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
     data: {
+      chainId: context.network.chainId,
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
+      transactionIndex: event.log.transactionIndex,
 
       msgHash: event.args.msgHash,
       oracle: event.args.oracle,
@@ -99,11 +105,13 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
   // filter other oracle
   if (listenOracle.includes(event.args.oracle)) {
     await HashImportedV2.create({
-      id: event.log.id,
-      data: {
+    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
+    data: {
+        chainId: context.network.chainId,
         blockNumber: event.block.number,
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
+        transactionIndex: event.log.transactionIndex,
 
         srcChainId: event.args.srcChainId,
         oracle: event.args.oracle,
@@ -120,13 +128,15 @@ ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
   // filter other channels
   if (listenSignature.includes(event.args.channel)) {
     await SignatureSubmittion.create({
-      id: event.log.id,
-      data: {
+    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
+    data: {
+        chainId: context.network.chainId,
         blockNumber: event.block.number,
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
+        transactionIndex: event.log.transactionIndex,
 
-        chainId: event.args.chainId,
+        sChainId: event.args.chainId,
         channel: event.args.channel,
         msgIndex: event.args.msgIndex,
         signer: event.args.signer,
