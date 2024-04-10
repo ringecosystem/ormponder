@@ -103,9 +103,9 @@ export default createConfig({
       address: "0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4",
       network: {
         // testnets
-        pangolin: {
-          startBlock: 2658409,
-        },
+        // pangolin: {
+        //   startBlock: 2658409,
+        // },
         sepolia: {
           startBlock: 5579141,
         },
