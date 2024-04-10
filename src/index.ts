@@ -10,7 +10,7 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   await MessageAcceptedV2.create({
     id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
     data: {
-      chainId: context.network.chainId,
+      chainId: BigInt(context.network.chainId),
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
@@ -36,7 +36,7 @@ ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
   await MessageDispatchedV2.create({
     id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
     data: {
-      chainId: context.network.chainId,
+      chainId: BigInt(context.network.chainId),
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
@@ -54,7 +54,7 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
   await MessageAssignedV2.create({
     id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
     data: {
-      chainId: context.network.chainId,
+      chainId: BigInt(context.network.chainId),
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
@@ -109,7 +109,7 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
     await HashImportedV2.create({
     id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
     data: {
-        chainId: context.network.chainId,
+        chainId: BigInt(context.network.chainId),
         blockNumber: event.block.number,
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
@@ -133,7 +133,7 @@ ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
     await SignatureSubmittion.create({
     id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
     data: {
-        chainId: context.network.chainId,
+        chainId: BigInt(context.network.chainId),
         blockNumber: event.block.number,
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
