@@ -62,6 +62,7 @@ export default createSchema((p) => ({
     transactionHash: p.string(),
 
     srcChainId: p.bigint(),
+    targetChainId: p.bigint(),
     oracle: p.hex(),
     lookupKey: p.string(),
     srcBlockNumber: p.bigint(),

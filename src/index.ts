@@ -106,6 +106,7 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
         transactionHash: event.transaction.hash,
 
         srcChainId: event.args.srcChainId,
+        targetChainId: BigInt(context.network.chainId),
         oracle: event.args.oracle,
         lookupKey: event.args.lookupKey,
         srcBlockNumber: BigInt(event.args.lookupKey),
