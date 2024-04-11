@@ -33,7 +33,7 @@ export default createSchema((p) => ({
   }),
   MessageDispatchedV2: p.createTable({
     id: p.string(),
-    chainId: p.bigint(),
+    targetChainId: p.bigint(),
 
     blockNumber: p.bigint(),
     blockTimestamp: p.bigint(),
@@ -76,7 +76,8 @@ export default createSchema((p) => ({
     blockTimestamp: p.bigint(),
     transactionHash: p.string(),
 
-    chainId: p.bigint(),
+    srcChainId: p.bigint(),
+
     channel: p.hex(),
     msgIndex: p.bigint(),
     signer: p.hex(),

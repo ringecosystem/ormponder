@@ -34,7 +34,7 @@ ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
   await MessageDispatchedV2.create({
     id: event.log.id,
     data: {
-      chainId: BigInt(context.network.chainId),
+      targetChainId: BigInt(context.network.chainId),
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
@@ -128,7 +128,7 @@ ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
 
-        chainId: event.args.chainId,
+        srcChainId: event.args.chainId,
         channel: event.args.channel,
         msgIndex: event.args.msgIndex,
         signer: event.args.signer,
