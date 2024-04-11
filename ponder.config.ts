@@ -132,11 +132,15 @@ export default createConfig({
     },
     SignaturePub: {
       abi: SignaturePubAbi,
-      address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
+      // address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
+      address: "0x2828c0223e6435365a3b977e87f12aefb7cbcbab",
       network: {
-        darwinia: {
-          startBlock: 2442860,
-        },
+        // darwinia: {
+        //   startBlock: 2442860,
+        // },
+        arbitrum_sepolia: {
+          startBlock: 32498547,
+        }
       },
     },
   },
