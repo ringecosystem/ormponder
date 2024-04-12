@@ -142,10 +142,11 @@ export default createConfig({
       network: {
         darwinia: {
           address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
-          startBlock: 2465243,
+          startBlock: 2465632,
         },
         // arbitrum_sepolia: {
-        //   startBlock: 32498547,
+        //   startBlock: 32836186,
+        //   address: "0x2828c0223e6435365a3b977e87f12aefb7cbcbab"
         // }
       },
     },
