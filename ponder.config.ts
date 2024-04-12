@@ -95,6 +95,11 @@ export default createConfig({
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
+    gnosis: {
+      chainId: 100,
+      transport: http("https://rpc.gnosischain.com"),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND
+    }
   },
   contracts: {
     // === V2
@@ -135,12 +140,12 @@ export default createConfig({
       // address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
       address: "0x2828c0223e6435365a3b977e87f12aefb7cbcbab",
       network: {
-        // darwinia: {
-        //   startBlock: 2442860,
-        // },
-        arbitrum_sepolia: {
-          startBlock: 32498547,
-        }
+        darwinia: {
+          startBlock: 2442860,
+        },
+        // arbitrum_sepolia: {
+        //   startBlock: 32498547,
+        // }
       },
     },
   },
