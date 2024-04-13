@@ -31,7 +31,7 @@ export default createConfig({
       transport: http(
         INFURA_API_KEY
           ? `https://sepolia.infura.io/v3/${INFURA_API_KEY}`
-          : "https://ethereum-sepolia.publicnode.com"
+          : "https://ethereum-sepolia-rpc.publicnode.com"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
@@ -51,7 +51,7 @@ export default createConfig({
       transport: http(
         INFURA_API_KEY
           ? `https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}`
-          : "https://arbitrum-one.publicnode.com"
+          : "https://arbitrum-one-rpc.publicnode.com"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
@@ -81,7 +81,7 @@ export default createConfig({
         //   ? `https://mainnet.infura.io/v3/de35badc1ec7472da2967dd0248bd60c`
         //   : "https://ethereum.publicnode.com"
 
-        "https://ethereum.publicnode.com"
+        "https://ethereum-rpc.publicnode.com"
       ),
 
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
