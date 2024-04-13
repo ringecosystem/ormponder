@@ -147,7 +147,7 @@ export default createConfig({
       network: {
         darwinia: {
           address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
-          startBlock: 2472588,
+          startBlock: 2474362,
         },
         // moonbeam: {
         //   address: "0x8809f9b3ACEF1dA309f49b5Ab97A4C0faA64E6Ae",
