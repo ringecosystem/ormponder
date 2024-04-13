@@ -116,15 +116,15 @@ export default createConfig({
         // pangolin: {
         //   startBlock: 2658409,
         // },
-        sepolia: {
-          startBlock: 5579141,
-        },
-        arbitrum_sepolia: {
-          startBlock: 31200402,
-        },
-        takio_katla: {
-          startBlock: 772664,
-        },
+        // sepolia: {
+        //   startBlock: 5579141,
+        // },
+        // arbitrum_sepolia: {
+        //   startBlock: 31200402,
+        // },
+        // takio_katla: {
+        //   startBlock: 772664,
+        // },
         tron_shasta: {
           startBlock: 42281878,
           address: "0x4a7C839b0a32c90ad3b397875df73B905b1Bf0CA", // TGm4AeM42R9ocbbN3ibrDtf5kkQVTTFMYS
