@@ -145,14 +145,14 @@ export default createConfig({
       // address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
       address: "0x2828c0223e6435365a3b977e87f12aefb7cbcbab",
       network: {
-        // darwinia: {
-        //   address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
-        //   startBlock: 2472588,
-        // },
-        moonbeam: {
-          address: "0x8809f9b3ACEF1dA309f49b5Ab97A4C0faA64E6Ae",
-          startBlock: 5926565
-        }
+        darwinia: {
+          address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
+          startBlock: 2472588,
+        },
+        // moonbeam: {
+        //   address: "0x8809f9b3ACEF1dA309f49b5Ab97A4C0faA64E6Ae",
+        //   startBlock: 5934252
+        // }
         // arbitrum_sepolia: {
         //   startBlock: 32836186,
         //   address: "0x2828c0223e6435365a3b977e87f12aefb7cbcbab"
