@@ -11,7 +11,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@ponder/core": "^0.4.2",
+    "@ponder/core": "0.4.2",
     "@types/node-cron": "^3.0.11",
     "axios": "^1.6.8",
     "node-cron": "^3.0.3",

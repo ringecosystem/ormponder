@@ -290,7 +290,7 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@ponder/core@^0.4.2":
+"@ponder/core@0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@ponder/core/-/core-0.4.2.tgz#2c7bd05b89862009c08936ccfaa74c321a687187"
   integrity sha512-NkSqIwrJov3Srq+EwnfucIePSKBzo9DLGYGshXFPVviTgbv6cyecMtVlsSMO1ihUyMKHnFPgObWEJX+jyAINiw==
