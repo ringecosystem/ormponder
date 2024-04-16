@@ -35,7 +35,7 @@ export default createConfig({
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
-    takio_katla: {
+    taiko_katla: {
       chainId: 167008,
       transport: http("https://rpc.katla.taiko.xyz"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
@@ -95,68 +95,48 @@ export default createConfig({
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
-    gnosis: {
-      chainId: 100,
-      transport: http("https://rpc.gnosischain.com"),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND
-    },
-    moonbeam: {
-      chainId: 1284,
-      transport: http("https://rpc.api.moonbeam.network"),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND
-    }
   },
   contracts: {
     // === V2
-    // ORMPV2: {
-    //   abi: ORMPAbiV2,
-    //   address: "0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4",
-    //   network: {
-    //     // testnets
-    //     // pangolin: {
-    //     //   startBlock: 2658409,
-    //     // },
-    //     // sepolia: {
-    //     //   startBlock: 5579141,
-    //     // },
-    //     // arbitrum_sepolia: {
-    //     //   startBlock: 31200402,
-    //     // },
-    //     // takio_katla: {
-    //     //   startBlock: 772664,
-    //     // },
-    //     tron_shasta: {
-    //       startBlock: 42281878,
-    //       address: "0x4a7C839b0a32c90ad3b397875df73B905b1Bf0CA", // TGm4AeM42R9ocbbN3ibrDtf5kkQVTTFMYS
-    //     },
-    //     // mainnets
-    //   },
-    //   filter: {
-    //     event: [
-    //       "MessageAccepted",
-    //       "MessageDispatched",
-    //       "MessageAssigned",
-    //       "HashImported",
-    //     ],
-    //   },
-    // },
+    ORMPV2: {
+      abi: ORMPAbiV2,
+      address: "0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4",
+      network: {
+        // testnets
+        pangolin: {
+          startBlock: 2686802,
+        },
+        sepolia: {
+          startBlock: 5707420,
+        },
+        arbitrum_sepolia: {
+          startBlock: 34110000,
+        },
+        taiko_katla: {
+          startBlock: 843300,
+        },
+        tron_shasta: {
+          startBlock: 43245627,
+          address: "0x4a7C839b0a32c90ad3b397875df73B905b1Bf0CA", // TGm4AeM42R9ocbbN3ibrDtf5kkQVTTFMYS
+        },
+        // mainnets
+      },
+      filter: {
+        event: [
+          "MessageAccepted",
+          "MessageDispatched",
+          "MessageAssigned",
+          "HashImported",
+        ],
+      },
+    },
     SignaturePub: {
       abi: SignaturePubAbi,
-      // address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
-      address: "0x2828c0223e6435365a3b977e87f12aefb7cbcbab",
+      address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
       network: {
         darwinia: {
-          address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
-          startBlock: 2487255,
+          startBlock: 2492391,
         },
-        // moonbeam: {
-        //   address: "0x8809f9b3ACEF1dA309f49b5Ab97A4C0faA64E6Ae",
-        //   startBlock: 5934252
-        // }
-        // arbitrum_sepolia: {
-        //   startBlock: 32836186,
-        //   address: "0x2828c0223e6435365a3b977e87f12aefb7cbcbab"
-        // }
       },
     },
   },
