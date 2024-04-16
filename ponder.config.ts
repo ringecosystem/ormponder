@@ -66,7 +66,7 @@ export default createConfig({
     },
     crab: {
       chainId: 44,
-      transport: http("https://crab-rpc.darwinia.network"),
+      transport: http("http://c2.crab-rpc.itering.io:9944/"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     darwinia: {
