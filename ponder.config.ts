@@ -104,19 +104,19 @@ export default createConfig({
       network: {
         // testnets
         pangolin: {
-          startBlock: 2686802,
+          startBlock: 2658409,
         },
         sepolia: {
-          startBlock: 5707420,
+          startBlock: 5579141,
         },
         arbitrum_sepolia: {
-          startBlock: 34110000,
+          startBlock: 31200402,
         },
-        taiko_katla: {
-          startBlock: 843300,
-        },
+        // taiko_katla: {
+        //   startBlock: 843300,
+        // },
         tron_shasta: {
-          startBlock: 43245627,
+          startBlock: 42281878,
           address: "0x4a7C839b0a32c90ad3b397875df73B905b1Bf0CA", // TGm4AeM42R9ocbbN3ibrDtf5kkQVTTFMYS
         },
         // mainnets
