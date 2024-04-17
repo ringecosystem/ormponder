@@ -112,9 +112,9 @@ export default createConfig({
         arbitrum_sepolia: {
           startBlock: 34110000,
         },
-        // taiko_katla: {
-        //   startBlock: 843300,
-        // },
+        taiko_katla: {
+          startBlock: 843300,
+        },
         tron_shasta: {
           startBlock: 43245627,
           address: "0x4a7C839b0a32c90ad3b397875df73B905b1Bf0CA", // TGm4AeM42R9ocbbN3ibrDtf5kkQVTTFMYS
@@ -135,7 +135,7 @@ export default createConfig({
       address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
       network: {
         darwinia: {
-          startBlock: 2492391,
+          startBlock: 2500250,
         },
       },
     },
