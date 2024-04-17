@@ -23,7 +23,7 @@ export default createConfig({
     },
     pangolin: {
       chainId: 43,
-      transport: http("https://pangolin-rpc.darwinia.network"),
+      transport: http("http://g2.testnets.darwinia.network:9940"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     sepolia: {
