@@ -7,6 +7,7 @@ import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 // const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const INFURA_API_KEY = null;
 const MAX_REQUESTS_PER_SECOND = 1;
+const FAST_MAX_REQUESTS_PER_SECOND = 10;
 const POLYGON_INFURA_API_KEY = process.env.INFURA_API_KEY;
 
 export default createConfig({
@@ -19,7 +20,7 @@ export default createConfig({
           ? `https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`
           : "https://arbitrum-sepolia-rpc.publicnode.com"
       ),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     pangolin: {
       chainId: 43,
@@ -38,7 +39,7 @@ export default createConfig({
     taiko_katla: {
       chainId: 167008,
       transport: http("https://rpc.katla.taiko.xyz"),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     tron_shasta: {
       chainId: 2494104990,
@@ -112,9 +113,9 @@ export default createConfig({
         arbitrum_sepolia: {
           startBlock: 31200402,
         },
-        // taiko_katla: {
-        //   startBlock: 843300,
-        // },
+        taiko_katla: {
+          startBlock: 843300,
+        },
         tron_shasta: {
           startBlock: 42281878,
           address: "0x4a7C839b0a32c90ad3b397875df73B905b1Bf0CA", // TGm4AeM42R9ocbbN3ibrDtf5kkQVTTFMYS
@@ -135,7 +136,7 @@ export default createConfig({
       address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
       network: {
         darwinia: {
-          startBlock: 2500250,
+          startBlock: 2501020,
         },
       },
     },
