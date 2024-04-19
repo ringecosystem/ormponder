@@ -48,12 +48,6 @@ export const ORMPAbi = [
     inputs: [
       {
         indexed: true,
-        internalType: "uint256",
-        name: "srcChainId",
-        type: "uint256",
-      },
-      {
-        indexed: true,
         internalType: "address",
         name: "oracle",
         type: "address",
@@ -64,12 +58,7 @@ export const ORMPAbi = [
         name: "lookupKey",
         type: "bytes32",
       },
-      {
-        indexed: false,
-        internalType: "bytes32",
-        name: "hash",
-        type: "bytes32",
-      },
+      { indexed: true, internalType: "bytes32", name: "hash", type: "bytes32" },
     ],
     name: "HashImported",
     type: "event",
@@ -81,12 +70,6 @@ export const ORMPAbi = [
         indexed: true,
         internalType: "bytes32",
         name: "msgHash",
-        type: "bytes32",
-      },
-      {
-        indexed: false,
-        internalType: "bytes32",
-        name: "root",
         type: "bytes32",
       },
       {
@@ -187,7 +170,7 @@ export const ORMPAbi = [
   {
     inputs: [],
     name: "LOCAL_CHAINID",
-    outputs: [{ internalType: "uint256", name: "chainId", type: "uint256" }],
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
@@ -196,6 +179,13 @@ export const ORMPAbi = [
     name: "changeSetter",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "count",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -248,7 +238,6 @@ export const ORMPAbi = [
   {
     inputs: [
       { internalType: "address", name: "", type: "address" },
-      { internalType: "uint256", name: "", type: "uint256" },
       { internalType: "bytes32", name: "", type: "bytes32" },
     ],
     name: "hashLookup",
@@ -258,34 +247,12 @@ export const ORMPAbi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "srcChainId", type: "uint256" },
       { internalType: "bytes32", name: "lookupKey", type: "bytes32" },
       { internalType: "bytes32", name: "hash_", type: "bytes32" },
     ],
     name: "importHash",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "imtBranch",
-    outputs: [{ internalType: "bytes32[32]", name: "", type: "bytes32[32]" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "messageCount",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "prove",
-    outputs: [{ internalType: "bytes32[32]", name: "", type: "bytes32[32]" }],
-    stateMutability: "view",
     type: "function",
   },
   {
@@ -310,13 +277,6 @@ export const ORMPAbi = [
     name: "recv",
     outputs: [{ internalType: "bool", name: "dispatchResult", type: "bool" }],
     stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "root",
-    outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
-    stateMutability: "view",
     type: "function",
   },
   {

@@ -11,7 +11,6 @@ export default createSchema((p) => ({
 
     logIndex: p.int(),
     msgHash: p.string(),
-    root: p.string(),
     // message struct
     messageChannel: p.string(),
     messageIndex: p.bigint(),

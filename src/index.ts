@@ -16,7 +16,6 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
 
       logIndex: event.log.logIndex,
       msgHash: event.args.msgHash,
-      root: `${event.args.root}`,
       messageChannel: message.channel,
       messageIndex: message.index,
       messageFromChainId: message.fromChainId,
@@ -105,8 +104,8 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
         blockNumber: event.block.number,
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
-
-        srcChainId: event.args.srcChainId,
+        // todo cut from lookupkey
+        srcChainId: BigInt(event.args.lookupKey),
         targetChainId: BigInt(context.network.chainId),
         oracle: event.args.oracle,
         lookupKey: event.args.lookupKey,
