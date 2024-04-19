@@ -62,10 +62,10 @@ export default createSchema((p) => ({
     transactionHash: p.string(),
 
     srcChainId: p.bigint(),
+    channel: p.hex(),
+    msgIndex: p.bigint(),
     targetChainId: p.bigint(),
     oracle: p.hex(),
-    lookupKey: p.string(),
-    srcBlockNumber: p.bigint(),
     hash: p.string(),
   }),
   SignatureSubmittion: p.createTable({

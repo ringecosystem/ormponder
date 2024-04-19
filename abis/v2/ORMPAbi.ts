@@ -53,12 +53,29 @@ export const ORMPAbi = [
         type: "address",
       },
       {
-        indexed: true,
+        indexed: false,
+        internalType: "uint256",
+        name: "chainId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "channel",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "msgIndex",
+        type: "uint256",
+      },
+      {
+        indexed: false,
         internalType: "bytes32",
-        name: "lookupKey",
+        name: "hash",
         type: "bytes32",
       },
-      { indexed: true, internalType: "bytes32", name: "hash", type: "bytes32" },
     ],
     name: "HashImported",
     type: "event",
@@ -247,7 +264,9 @@ export const ORMPAbi = [
   },
   {
     inputs: [
-      { internalType: "bytes32", name: "lookupKey", type: "bytes32" },
+      { internalType: "uint256", name: "chainId", type: "uint256" },
+      { internalType: "address", name: "channel", type: "address" },
+      { internalType: "uint256", name: "msgIndex", type: "uint256" },
       { internalType: "bytes32", name: "hash_", type: "bytes32" },
     ],
     name: "importHash",
