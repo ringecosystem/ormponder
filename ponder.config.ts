@@ -101,20 +101,20 @@ export default createConfig({
     // === V2
     ORMPV2: {
       abi: ORMPAbiV2,
-      address: "0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4",
+      address: "0xa30daF3c6071361960aF29e52C1eC860a037886f",
       network: {
         // testnets
         pangolin: {
-          startBlock: 2658409,
+          startBlock: 2701388,
         },
         sepolia: {
-          startBlock: 5579141,
+          startBlock: 5728578,
         },
         arbitrum_sepolia: {
-          startBlock: 31200402,
+          startBlock: 35145606,
         },
         taiko_katla: {
-          startBlock: 843300,
+          startBlock: 890471,
         },
         tron_shasta: {
           startBlock: 42281878,
@@ -136,7 +136,7 @@ export default createConfig({
       address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
       network: {
         darwinia: {
-          startBlock: 2501020,
+          startBlock: 2513694,
         },
       },
     },

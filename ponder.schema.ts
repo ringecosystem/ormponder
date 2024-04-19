@@ -11,7 +11,6 @@ export default createSchema((p) => ({
 
     logIndex: p.int(),
     msgHash: p.string(),
-    root: p.string(),
     // message struct
     messageChannel: p.string(),
     messageIndex: p.bigint(),
@@ -63,10 +62,10 @@ export default createSchema((p) => ({
     transactionHash: p.string(),
 
     srcChainId: p.bigint(),
+    channel: p.hex(),
+    msgIndex: p.bigint(),
     targetChainId: p.bigint(),
     oracle: p.hex(),
-    lookupKey: p.string(),
-    srcBlockNumber: p.bigint(),
     hash: p.string(),
   }),
   SignatureSubmittion: p.createTable({

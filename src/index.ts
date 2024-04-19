@@ -1,8 +1,9 @@
 import { ponder } from "@/generated";
 
-const listenRelayer = ["0x305cdd9C20adC44BdD722B6A37F49Cb439623E49"];
-const listenOracle = ["0xf64a5353Cf2Da7EE514F53Ee949c43E1BC4f494e"];
-const listenSignature = ["0x42165Ce95b51D1B845C190C96fB30c4FeF6Abce4"];
+// todo update
+const listenRelayer = ["0xA3B91e8Eb30825632Ca001a0a7c5839386ab838D"];
+const listenOracle = ["0x0503c037719d7b39402a3ee9AA60b7ed604BB1f7"];
+const listenSignature = ["0xa30daF3c6071361960aF29e52C1eC860a037886f"];
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
@@ -16,7 +17,6 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
 
       logIndex: event.log.logIndex,
       msgHash: event.args.msgHash,
-      root: `${event.args.root}`,
       messageChannel: message.channel,
       messageIndex: message.index,
       messageFromChainId: message.fromChainId,
@@ -105,12 +105,11 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
         blockNumber: event.block.number,
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
-
-        srcChainId: event.args.srcChainId,
+        srcChainId: event.args.chainId,
+        channel: event.args.channel,
+        msgIndex: event.args.msgIndex,
         targetChainId: BigInt(context.network.chainId),
         oracle: event.args.oracle,
-        lookupKey: event.args.lookupKey,
-        srcBlockNumber: BigInt(event.args.lookupKey),
         hash: event.args.hash,
       },
     });
