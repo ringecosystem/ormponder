@@ -1,9 +1,8 @@
 import { ponder } from "@/generated";
 
-// todo update
-const listenRelayer = ["0xA3B91e8Eb30825632Ca001a0a7c5839386ab838D"];
-const listenOracle = ["0x0503c037719d7b39402a3ee9AA60b7ed604BB1f7"];
-const listenSignature = ["0xa30daF3c6071361960aF29e52C1eC860a037886f"];
+const listenRelayer = ["0x8D203c1B5190b69048e1a03bB89C5B4E511DB246"];
+const listenOracle = ["0xE80Cb57F95f9279C9C3b365B940dE235883D1002"];
+const listenSignature = ["0x9BEc71b9C646653C6C73Af8D4B7E5f84a5420005"];
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
