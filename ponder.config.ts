@@ -101,7 +101,7 @@ export default createConfig({
     // === V2
     ORMPV2: {
       abi: ORMPAbiV2,
-      address: "0xa30daF3c6071361960aF29e52C1eC860a037886f",
+      address: "0x9BEc71b9C646653C6C73Af8D4B7E5f84a5420005",
       network: {
         // testnets
         pangolin: {
@@ -118,7 +118,7 @@ export default createConfig({
         },
         tron_shasta: {
           startBlock: 42281878,
-          address: "0x4a7C839b0a32c90ad3b397875df73B905b1Bf0CA", // TGm4AeM42R9ocbbN3ibrDtf5kkQVTTFMYS
+          address: "0x13c991C5BEf30c0E8600D95B8554B4DeDa4853b8", // TBmqJzYEQXJLBU4ycvMLPuqxMfEkVMeDQ8
         },
         // mainnets
       },
