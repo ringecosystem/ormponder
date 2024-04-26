@@ -1,8 +1,17 @@
 import { ponder } from "@/generated";
 
-const listenRelayer = ["0x8D203c1B5190b69048e1a03bB89C5B4E511DB246"];
-const listenOracle = ["0xE80Cb57F95f9279C9C3b365B940dE235883D1002"];
-const listenSignature = ["0x9BEc71b9C646653C6C73Af8D4B7E5f84a5420005"];
+const listenRelayer = [
+  "0x8D203c1B5190b69048e1a03bB89C5B4E511DB246",
+  "0x0EEf3478C2E34c36Bb13B8B235096D5c361873bF", // tron
+];
+const listenOracle = [
+  "0xE80Cb57F95f9279C9C3b365B940dE235883D1002",
+  "0x58facC3a63CEF6d806E08d9189B37351dd4aE9C3", // tron
+];
+const listenSignature = [
+  "0x9BEc71b9C646653C6C73Af8D4B7E5f84a5420005",
+  "0x13c991C5BEf30c0E8600D95B8554B4DeDa4853b8", // tron
+];
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
