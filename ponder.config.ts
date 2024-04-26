@@ -117,7 +117,7 @@ export default createConfig({
           startBlock: 890471,
         },
         tron_shasta: {
-          startBlock: 42281878,
+          startBlock: 43536767,
           address: "0x13c991C5BEf30c0E8600D95B8554B4DeDa4853b8", // TBmqJzYEQXJLBU4ycvMLPuqxMfEkVMeDQ8
         },
         // mainnets
