@@ -27,6 +27,11 @@ export default createConfig({
       transport: http("http://g2.testnets.darwinia.network:9940"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
+    pangoro: {
+      chainId: 45,
+      transport: http("https://fraa-flashbox-2871-rpc.a.stagenet.tanssi.network"),
+      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+    },
     sepolia: {
       chainId: 11155111,
       transport: http(
@@ -106,6 +111,10 @@ export default createConfig({
         // testnets
         pangolin: {
           startBlock: 2701388,
+        },
+        pangoro: {
+          startBlock: 47065,
+          address: "0xE46ed7594fFa6AD7c3b5232827EC2AF8f94beb38",
         },
         sepolia: {
           startBlock: 5728578,

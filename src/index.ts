@@ -3,14 +3,17 @@ import { ponder } from "@/generated";
 const listenRelayer = [
   "0x8D203c1B5190b69048e1a03bB89C5B4E511DB246",
   "0x0EEf3478C2E34c36Bb13B8B235096D5c361873bF", // tron
+  "0x1cFe6d573391094d90cB9f90B754C889b770bfEa", // pangoro
 ];
 const listenOracle = [
   "0xE80Cb57F95f9279C9C3b365B940dE235883D1002",
   "0x58facC3a63CEF6d806E08d9189B37351dd4aE9C3", // tron
+  "0x2E0c9AfF4320147E17d5D9A65a82010ce93Ba255", // pangoro
 ];
 const listenSignature = [
   "0x9BEc71b9C646653C6C73Af8D4B7E5f84a5420005",
   "0x13c991C5BEf30c0E8600D95B8554B4DeDa4853b8", // tron
+  "0xE46ed7594fFa6AD7c3b5232827EC2AF8f94beb38" // pangoro
 ];
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
