@@ -30,7 +30,7 @@ export default createConfig({
     pangoro: {
       chainId: 45,
       transport: http("https://fraa-flashbox-2871-rpc.a.stagenet.tanssi.network"),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     sepolia: {
       chainId: 11155111,
@@ -41,9 +41,9 @@ export default createConfig({
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
-    taiko_katla: {
-      chainId: 167008,
-      transport: http("https://rpc.katla.taiko.xyz"),
+    taiko_hekla: {
+      chainId: 167009,
+      transport: http("https://rpc.hekla.taiko.xyz"),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     tron_shasta: {
@@ -122,8 +122,8 @@ export default createConfig({
         arbitrum_sepolia: {
           startBlock: 35145606,
         },
-        taiko_katla: {
-          startBlock: 890471,
+        taiko_hekla: {
+          startBlock: 113905,
         },
         tron_shasta: {
           startBlock: 43536767,
