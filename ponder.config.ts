@@ -113,7 +113,7 @@ export default createConfig({
           startBlock: 2701388,
         },
         pangoro: {
-          startBlock: 47065,
+          startBlock: 127804,
           address: "0xE46ed7594fFa6AD7c3b5232827EC2AF8f94beb38",
         },
         sepolia: {
