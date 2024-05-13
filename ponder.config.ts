@@ -6,7 +6,7 @@ import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 
 // const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const INFURA_API_KEY = null;
-const MAX_REQUESTS_PER_SECOND = 1;
+const MAX_REQUESTS_PER_SECOND = 8;
 const FAST_MAX_REQUESTS_PER_SECOND = 10;
 const POLYGON_INFURA_API_KEY = process.env.INFURA_API_KEY;
 
@@ -77,7 +77,7 @@ export default createConfig({
     },
     darwinia: {
       chainId: 46,
-      transport: http("http://c2.darwinia-rpc.itering.io:9944/"),
+      transport: http("http://c1.darwinia-rpc.itering.io:9944/"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     ethereum: {
