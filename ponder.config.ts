@@ -106,7 +106,7 @@ export default createConfig({
     // === V2
     ORMPV2: {
       abi: ORMPAbiV2,
-      address: "0x8FA742787a5ee193209Ba0765e2f6DFAAd23ed23",
+      address: "0xdf7b91c92Ac62447Ccb92bd39f41727466534043",
       network: {
         // testnets
         pangolin: {
