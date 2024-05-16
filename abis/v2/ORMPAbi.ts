@@ -142,6 +142,12 @@ export const ORMPAbi = [
         name: "relayerFee",
         type: "uint256",
       },
+      {
+        indexed: false,
+        internalType: "bytes",
+        name: "params",
+        type: "bytes",
+      },
     ],
     name: "MessageAssigned",
     type: "event",

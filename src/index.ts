@@ -13,7 +13,7 @@ const listenOracle = [
 const listenSignature = [
   "0xdf7b91c92Ac62447Ccb92bd39f41727466534043",
   "0x13c991C5BEf30c0E8600D95B8554B4DeDa4853b8", // tron
-  "0xE46ed7594fFa6AD7c3b5232827EC2AF8f94beb38" // pangoro
+  "0xE46ed7594fFa6AD7c3b5232827EC2AF8f94beb38", // pangoro
 ];
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
@@ -72,6 +72,11 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
       relayerFee: event.args.relayerFee,
     },
   });
+  // console.log(
+  //   event.args.relayer,
+  //   listenRelayer.includes(event.args.relayer),
+  //   context.network.name
+  // );
   // filter other relayer
   if (listenRelayer.includes(event.args.relayer)) {
     await MessageAcceptedV2.updateMany({
@@ -88,6 +93,11 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
       },
     });
   }
+  // console.log(
+  //   event.args.oracle,
+  //   listenRelayer.includes(event.args.oracle),
+  //   context.network.name
+  // );
   // filter other oracle
   if (listenOracle.includes(event.args.oracle)) {
     await MessageAcceptedV2.updateMany({
