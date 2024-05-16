@@ -18,8 +18,8 @@ export default createConfig({
       transport: http(
         INFURA_API_KEY
           ? `https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`
-          // : "https://arbitrum-sepolia-hrpc.vercel.app/"
-          : "https://sepolia-rollup.arbitrum.io/rpc"
+          : "https://arbitrum-sepolia-hrpc.vercel.app/"
+          // : "https://sepolia-rollup.arbitrum.io/rpc"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
@@ -38,8 +38,8 @@ export default createConfig({
       transport: http(
         INFURA_API_KEY
           ? `https://sepolia.infura.io/v3/${INFURA_API_KEY}`
-          // : "https://sepolia-hrpc.vercel.app/"
-          : "https://rpc2.sepolia.org"
+          : "https://sepolia-hrpc.vercel.app/"
+          // : "https://rpc2.sepolia.org"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
@@ -59,8 +59,8 @@ export default createConfig({
       transport: http(
         INFURA_API_KEY
           ? `https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}`
-          : "https://arb1.arbitrum.io/rpc"
-          // : "https://arbitrum-hrpc.vercel.app/"
+          // : "https://arb1.arbitrum.io/rpc"
+          : "https://arbitrum-hrpc.vercel.app/"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
@@ -69,20 +69,21 @@ export default createConfig({
       transport: http(
         INFURA_API_KEY
           ? `https://blast-mainnet.infura.io/v3/${INFURA_API_KEY}`
-          : "https://rpc.blast.io"
+          // : "https://rpc.blast.io"
+          : "https://blast-hrpc.vercel.app/"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     crab: {
       chainId: 44,
-      transport: http("http://c2.crab-rpc.itering.io:9944/"),
-      // transport: http("https://crab-hrpc.vercel.app/"),
+      // transport: http("http://c2.crab-rpc.itering.io:9944/"),
+      transport: http("https://crab-hrpc.vercel.app/"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     darwinia: {
       chainId: 46,
-      transport: http("http://c1.darwinia-rpc.itering.io:9944/"),
-      // transport: http("https://darwinia-hrpc.vercel.app/"),
+      // transport: http("http://c1.darwinia-rpc.itering.io:9944/"),
+      transport: http("https://darwinia-hrpc.vercel.app/"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     ethereum: {
@@ -91,7 +92,8 @@ export default createConfig({
         // INFURA_API_KEY
         //   ? `https://mainnet.infura.io/v3/de35badc1ec7472da2967dd0248bd60c`
 
-        "https://eth-mainnet.public.blastapi.io"
+        // "https://eth-mainnet.public.blastapi.io"
+        "https://ethereum-hrpc.vercel.app/"
       ),
 
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
@@ -101,8 +103,8 @@ export default createConfig({
       transport: http(
         POLYGON_INFURA_API_KEY
           ? `https://polygon-mainnet.infura.io/v3/${POLYGON_INFURA_API_KEY}`
-          : "https://polygon-bor-rpc.publicnode.com"
-          // : "https://polygon-hrpc.vercel.app/"
+          // : "https://polygon-bor-rpc.publicnode.com"
+          : "https://polygon-hrpc.vercel.app/"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
