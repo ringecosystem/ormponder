@@ -111,7 +111,7 @@ export default createConfig({
     // === V2
     ORMPV2: {
       abi: ORMPAbiV2,
-      address: "0xdf7b91c92Ac62447Ccb92bd39f41727466534043",
+      address: "0xA72d283015c01807bc0788Bf22C1A774bDbFC8fA",
       network: {
         // testnets
         pangolin: {
@@ -119,7 +119,6 @@ export default createConfig({
         },
         pangoro: {
           startBlock: 127804,
-          address: "0xE46ed7594fFa6AD7c3b5232827EC2AF8f94beb38",
         },
         sepolia: {
           startBlock: 5906285,
