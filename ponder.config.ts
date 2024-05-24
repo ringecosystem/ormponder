@@ -118,19 +118,19 @@ export default createConfig({
         //   startBlock: 2836100,
         // },
         pangoro: {
-          startBlock: 127804,
+          startBlock: 229000,
         },
         sepolia: {
-          startBlock: 5906285,
+          startBlock: 5967541,
         },
         arbitrum_sepolia: {
-          startBlock: 43844267,
+          startBlock: 47378439,
         },
         taiko_hekla: {
-          startBlock: 113905,
+          startBlock: 204774,
         },
         tron_shasta: {
-          startBlock: 43958393,
+          startBlock: 44338539,
           address: "0x841B6b2F3148131Ac161d88edFb2C11F146e189F", // TN1j3Ttt1c1mB3X2zdKkdMsUK6pZyLCxSr
         },
         // mainnets
@@ -149,7 +149,7 @@ export default createConfig({
       address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
       network: {
         darwinia: {
-          startBlock: 2703000,
+          startBlock: 2761609,
         },
       },
     },
