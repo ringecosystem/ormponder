@@ -23,11 +23,11 @@ export default createConfig({
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
-    pangolin: {
-      chainId: 43,
-      transport: http("http://g1.testnets.darwinia.network:9940"),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
-    },
+    // pangolin: {
+    //   chainId: 43,
+    //   transport: http("http://g1.testnets.darwinia.network:9940"),
+    //   maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+    // },
     pangoro: {
       chainId: 45,
       transport: http("https://fraa-flashbox-2871-rpc.a.stagenet.tanssi.network"),
@@ -114,9 +114,9 @@ export default createConfig({
       address: "0xA72d283015c01807bc0788Bf22C1A774bDbFC8fA",
       network: {
         // testnets
-        pangolin: {
-          startBlock: 2836100,
-        },
+        // pangolin: {
+        //   startBlock: 2836100,
+        // },
         pangoro: {
           startBlock: 127804,
         },
