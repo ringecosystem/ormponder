@@ -1,11 +1,11 @@
 FROM node:21-alpine
 
-COPY . /app
+# COPY . /app
 
-RUN cd /app && \
-    yarn install && \
-    yarn codegen
+# RUN cd /app && \
+#     yarn install && \
+#     yarn codegen
 
-WORKDIR /app
+# WORKDIR /app
 
-CMD ["yarn", "start"]
+CMD ["echo", "yarn", "start"]
