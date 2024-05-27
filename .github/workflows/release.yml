@@ -34,7 +34,9 @@ jobs:
           push: true
           context: .
           file: Dockerfile
-          tags: ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}:sha-${{ env.SHA }}
+          tags: |
+            ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}:sha-${{ env.SHA }}
+            ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}:staging
 
       - name: Publish docker image with tag
         uses: docker/build-push-action@v3
