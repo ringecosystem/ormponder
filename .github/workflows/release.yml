@@ -46,3 +46,4 @@ jobs:
           context: .
           file: Dockerfile
           tags: ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}:${{ env.GIT_TAG_NAME }}
+
