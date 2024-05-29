@@ -1,11 +1,11 @@
 FROM node:21-alpine
 
-# COPY . /app
+COPY . /app
 
-# RUN cd /app && \
-#     yarn install && \
-#     yarn codegen
+RUN cd /app && \
+    yarn install && \
+    yarn codegen
 
-# WORKDIR /app
+WORKDIR /app
 
-CMD ["echo", "yarn", "start"]
+CMD ["/app/scripts/entrypoint.sh"]

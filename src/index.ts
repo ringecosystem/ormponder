@@ -1,17 +1,5 @@
 import { ponder } from "@/generated";
-
-const listenRelayer = [
-  "0xaC2b224c2E1eD2E8663097a361A05a72d6671C7D",
-  "0xaBFEBd81169de74f5a9Dbd7C1b5E349E835852E8", // TRediXQ8qcTqorMQqJ2jQgqnjUojWZo2qc
-];
-const listenOracle = [
-  "0x3f938756ceFa33665719Eb528E581FF3f460b7C6",
-  "0x488116286B253D61FFd41F4948c288c3C672918F", // TGaaHxjof9QcfKwggnFVM3QwjGKzbuNzNk
-];
-const listenSignature = [
-  "0xA72d283015c01807bc0788Bf22C1A774bDbFC8fA",
-  "0x841B6b2F3148131Ac161d88edFb2C11F146e189F", // TN1j3Ttt1c1mB3X2zdKkdMsUK6pZyLCxSr
-];
+import * as address from './address.local'
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
@@ -75,7 +63,7 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
   //   context.network.name
   // );
   // filter other relayer
-  if (listenRelayer.includes(event.args.relayer)) {
+  if (address.listenRelayer.includes(event.args.relayer)) {
     await MessageAcceptedV2.updateMany({
       where: {
         msgHash: {
@@ -96,7 +84,7 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
   //   context.network.name
   // );
   // filter other oracle
-  if (listenOracle.includes(event.args.oracle)) {
+  if (address.listenOracle.includes(event.args.oracle)) {
     await MessageAcceptedV2.updateMany({
       where: {
         msgHash: {
@@ -116,7 +104,7 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
 ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
   const { HashImportedV2 } = context.db;
   // filter other oracle
-  if (listenOracle.includes(event.args.oracle)) {
+  if (address.listenOracle.includes(event.args.oracle)) {
     await HashImportedV2.create({
       id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
       data: {
@@ -137,7 +125,7 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
 ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
   const { SignatureSubmittion } = context.db;
   // filter other channels
-  if (listenSignature.includes(event.args.channel)) {
+  if (address.listenSignature.includes(event.args.channel)) {
     await SignatureSubmittion.create({
       id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
       data: {
