@@ -8,4 +8,4 @@ RUN cd /app && \
 
 WORKDIR /app
 
-CMD ["/app/scripts/entrypoint.sh"]
+ENTRYPOINT ["/app/scripts/entrypoint.sh"]
