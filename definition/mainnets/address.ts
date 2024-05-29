@@ -1,0 +1,14 @@
+
+
+export const listenRelayer = [
+    "0xaC2b224c2E1eD2E8663097a361A05a72d6671C7D",
+    "0xDD9622309aa2798D74CD39C772D289dfe3EEdaD5", // TWArBv4oRtVE4MAkqaEVHHiBQX1Wc7xDg6
+];
+export const listenOracle = [
+    "0x3f938756ceFa33665719Eb528E581FF3f460b7C6",
+    "0xf7A4217c2c372E50c19fdF68D86b3C7E493d2d21", // TYYcXSzzc8r4Q17xrYUtqWEMtKUNwNictu
+];
+export const listenSignature = [
+    "0xA72d283015c01807bc0788Bf22C1A774bDbFC8fA",
+    "0x152c6DdDD0A4cfD817af7Cf4cf5491D4AC44e886", // TBuAR5bP2KoJ6Thx4zFqGChSARNRYrknTD
+];

@@ -8,4 +8,4 @@ RUN cd /app && \
 
 WORKDIR /app
 
-CMD ["yarn", "start"]
+CMD ["/app/scripts/entrypoint.sh"]
