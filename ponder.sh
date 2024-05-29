@@ -6,5 +6,8 @@ set -e
 
 BIN_PATH=$(cd "$(dirname "$0")"; pwd -P)
 
+cd ${BIN_PATH}
 
-${BIN_PATH}/scripts/entrypoint.sh --group=$1 $2
+npx zx ${BIN_PATH}/scripts/init.mjs --group=$1
+
+npx ponder $2

@@ -33,16 +33,11 @@ async function _copy(lifecycle) {
   console.log('definition file generated');
 }
 
-async function _run() {
-  cd(_projectdir());
-  await $`yarn start`;
-}
 
 async function main() {
   const lifecycle = _lifecycle();
   await _check(lifecycle);
   await _copy(lifecycle);
-  await _run();
 }
 
 

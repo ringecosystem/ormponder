@@ -8,4 +8,6 @@ WORK_PATH=${BIN_PATH}/../
 
 cd ${WORK_PATH}
 
-npx zx ${WORK_PATH}/scripts/boot.mjs $@
+npx zx ${WORK_PATH}/scripts/init.mjs $@
+
+npx ponder start
