@@ -1,8 +1,8 @@
 import { createConfig } from "@ponder/core";
 import { http } from "viem";
 
-import { ORMPAbi as ORMPAbiV2 } from "abis/v2/ORMPAbi";
-import { SignaturePubAbi } from "abis/v2/SignaturePubAbi";
+import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
+import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const BLAST_API_KEY = process.env.BLAST_API_KEY;
