@@ -17,5 +17,5 @@ yarn-error.log*
 /generated/
 /.ponder/
 
-ponder.config.ts
+/ponder.config.ts
 *.local.*
