@@ -45,5 +45,7 @@ jobs:
           push: true
           context: .
           file: Dockerfile
-          tags: ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}:${{ env.GIT_TAG_NAME }}
+          tags: |
+            ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}:${{ env.GIT_TAG_NAME }}
+            ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}:latest
 
