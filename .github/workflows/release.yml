@@ -55,16 +55,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Deploy ormponder-testnets
-        uses: bervProject/railway-deploy@0.1.2-beta
-        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          service: "ormponder-testnets"
-
       - name: Deploy ormponder-mainnets
         uses: bervProject/railway-deploy@0.1.2-beta
         if: startsWith(github.ref, 'refs/tags/v')
         with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          railway_token: ${{ secrets.RAILWAY_TOKEN_PRD }}
           service: "ormponder-mainnets"
+
+      - name: Deploy ormponder-testnets
+        uses: bervProject/railway-deploy@0.1.2-beta
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN_STG }}
+          service: "ormponder-testnets"
