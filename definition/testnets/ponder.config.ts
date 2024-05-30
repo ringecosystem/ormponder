@@ -8,7 +8,6 @@ import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 const INFURA_API_KEY = null;
 const MAX_REQUESTS_PER_SECOND = 5;
 const FAST_MAX_REQUESTS_PER_SECOND = 10;
-const POLYGON_INFURA_API_KEY = process.env.INFURA_API_KEY;
 
 export default createConfig({
   networks: {
@@ -53,57 +52,10 @@ export default createConfig({
       transport: http("https://api.shasta.trongrid.io/jsonrpc"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
-    // mainnets
-    arbitrum: {
-      chainId: 42161,
-      transport: http(
-        INFURA_API_KEY
-          ? `https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}`
-          : "https://arb1.arbitrum.io/rpc"
-          // : "https://arbitrum-hrpc.vercel.app/"
-      ),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
-    },
-    blast: {
-      chainId: 81457,
-      transport: http(
-        INFURA_API_KEY
-          ? `https://blast-mainnet.infura.io/v3/${INFURA_API_KEY}`
-          : "https://rpc.blast.io"
-      ),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
-    },
-    crab: {
-      chainId: 44,
-      transport: http("http://c2.crab-rpc.itering.io:9944/"),
-      // transport: http("https://crab-hrpc.vercel.app/"),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
-    },
     darwinia: {
       chainId: 46,
       transport: http("http://c1.darwinia-rpc.itering.io:9944/"),
       // transport: http("https://darwinia-hrpc.vercel.app/"),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
-    },
-    ethereum: {
-      chainId: 1,
-      transport: http(
-        // INFURA_API_KEY
-        //   ? `https://mainnet.infura.io/v3/de35badc1ec7472da2967dd0248bd60c`
-
-        "https://eth-mainnet.public.blastapi.io"
-      ),
-
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
-    },
-    polygon: {
-      chainId: 137,
-      transport: http(
-        POLYGON_INFURA_API_KEY
-          ? `https://polygon-mainnet.infura.io/v3/${POLYGON_INFURA_API_KEY}`
-          : "https://polygon-bor-rpc.publicnode.com"
-          // : "https://polygon-hrpc.vercel.app/"
-      ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },
