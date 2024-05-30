@@ -68,4 +68,3 @@ jobs:
         with:
           railway_token: ${{ secrets.RAILWAY_TOKEN_STG }}
           service: "ormponder-testnets"
-
