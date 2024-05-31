@@ -49,7 +49,7 @@ export default createConfig({
     },
     polygon: {
       chainId: 137,
-      transport: http(`https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}`),
+      transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     tron: {
