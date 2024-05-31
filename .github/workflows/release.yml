@@ -55,16 +55,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Deploy ormponder-mainnets
-        uses: fewensa/railway-deploy@main
+      - name: Deploy railway (mainnets)
+        uses: fewensa/action-railway-redeploy@main
         if: startsWith(github.ref, 'refs/tags/v')
         with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN_PRD }}
-          service: "ormponder-mainnets"
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          environment_id: "4dedc55b-f25a-4ebf-9af6-58bc04c48bce"
+          service_id: "24f2a5a4-8e41-440b-8e40-9df44bb9a3b0"
 
-      - name: Deploy ormponder-testnets
-        uses: fewensa/railway-deploy@main
+      - name: Deploy railway (mainnets)
+        uses: fewensa/action-railway-redeploy@main
         if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
         with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN_STG }}
-          service: "ormponder-testnets"
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          environment_id: "b9e29486-e9e1-4e61-87d4-8360abbdc469"
+          service_id: "c6a36d9d-6050-4386-8b2d-eb4760b276cb"
+
