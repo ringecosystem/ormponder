@@ -52,6 +52,7 @@ jobs:
   deploy-railway:
     name: Deploy railway
     runs-on: ubuntu-latest
+    needs: [publish-docker-image]
     steps:
       - uses: actions/checkout@v2
 
