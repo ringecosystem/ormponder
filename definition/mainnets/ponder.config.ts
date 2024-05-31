@@ -49,7 +49,8 @@ export default createConfig({
     },
     polygon: {
       chainId: 137,
-      transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
+      // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
+      transport: http(`https://polygon-hrpc.vercel.app/`),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     tron: {
