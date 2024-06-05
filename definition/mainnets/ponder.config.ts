@@ -14,8 +14,9 @@ export default createConfig({
     arbitrum: {
       chainId: 42161,
       transport: http(
-        `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`
+        // `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`
         // "https://arb1.arbitrum.io/rpc"
+        "https://arbitrum-hrpc.vercel.app/"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
@@ -49,8 +50,8 @@ export default createConfig({
     },
     polygon: {
       chainId: 137,
-      // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
-      transport: http(`https://polygon-hrpc.vercel.app/`),
+      transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
+      // transport: http(`https://polygon-hrpc.vercel.app/`),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     tron: {
