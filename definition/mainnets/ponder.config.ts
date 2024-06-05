@@ -14,8 +14,8 @@ export default createConfig({
     arbitrum: {
       chainId: 42161,
       transport: http(
-        // `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`
-        "https://arb1.arbitrum.io/rpc"
+        `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`
+        // "https://arb1.arbitrum.io/rpc"
       ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
