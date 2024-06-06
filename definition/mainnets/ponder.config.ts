@@ -67,31 +67,31 @@ export default createConfig({
       abi: ORMPAbiV2,
       address: "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
       network: {
-        arbitrum: {
-          startBlock: 218870631,
-        },
-        blast: {
-          startBlock: 4416712,
-        },
-        crab: {
-          startBlock: 2917100,
-        },
+        // arbitrum: {
+        //   startBlock: 218870631,
+        // },
+        // blast: {
+        //   startBlock: 4416712,
+        // },
+        // crab: {
+        //   startBlock: 2917100,
+        // },
         darwinia: {
           startBlock: 2849900,
         },
-        ethereum: {
-          startBlock: 20030000,
-        },
-        moonbeam: {
-          startBlock: 6314163,
-        },
-        polygon: {
-          startBlock: 57819999,
-        },
-        tron: {
-          startBlock: 62333124,
-          address: "0x5C5c383FEbE62F377F8c0eA1de97F2a2Ba102e98", // TJPZeFEdc4TBEcNbku5xVZLQ6B2Q1oGnd1
-        },
+        // ethereum: {
+        //   startBlock: 20030000,
+        // },
+        // moonbeam: {
+        //   startBlock: 6314163,
+        // },
+        // polygon: {
+        //   startBlock: 57819999,
+        // },
+        // tron: {
+        //   startBlock: 62333124,
+        //   address: "0x5C5c383FEbE62F377F8c0eA1de97F2a2Ba102e98", // TJPZeFEdc4TBEcNbku5xVZLQ6B2Q1oGnd1
+        // },
       },
       filter: {
         event: [
