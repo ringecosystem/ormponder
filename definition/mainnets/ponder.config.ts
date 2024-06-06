@@ -7,7 +7,7 @@ import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const BLAST_API_KEY = process.env.BLAST_API_KEY;
 const MAX_REQUESTS_PER_SECOND = 5;
-const FAST_MAX_REQUESTS_PER_SECOND = 10;
+const FAST_MAX_REQUESTS_PER_SECOND = 50;
 
 export default createConfig({
   networks: {
@@ -18,7 +18,7 @@ export default createConfig({
         // "https://arb1.arbitrum.io/rpc"
         "https://arbitrum-hrpc.vercel.app/"
       ),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     blast: {
       chainId: 81457,
@@ -53,7 +53,7 @@ export default createConfig({
       chainId: 137,
       // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
       transport: http(`https://polygon-hrpc.vercel.app/`),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     tron: {
       chainId: 728126428,
@@ -67,31 +67,31 @@ export default createConfig({
       abi: ORMPAbiV2,
       address: "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
       network: {
-        // arbitrum: {
-        //   startBlock: 218870631,
-        // },
-        // blast: {
-        //   startBlock: 4416712,
-        // },
-        // crab: {
-        //   startBlock: 2917100,
-        // },
+        arbitrum: {
+          startBlock: 218870631,
+        },
+        blast: {
+          startBlock: 4416712,
+        },
+        crab: {
+          startBlock: 2917100,
+        },
         darwinia: {
           startBlock: 2849900,
         },
-        // ethereum: {
-        //   startBlock: 20030000,
-        // },
-        // moonbeam: {
-        //   startBlock: 6314163,
-        // },
-        // polygon: {
-        //   startBlock: 57819999,
-        // },
-        // tron: {
-        //   startBlock: 62333124,
-        //   address: "0x5C5c383FEbE62F377F8c0eA1de97F2a2Ba102e98", // TJPZeFEdc4TBEcNbku5xVZLQ6B2Q1oGnd1
-        // },
+        ethereum: {
+          startBlock: 20030000,
+        },
+        moonbeam: {
+          startBlock: 6314163,
+        },
+        polygon: {
+          startBlock: 57819999,
+        },
+        tron: {
+          startBlock: 62333124,
+          address: "0x5C5c383FEbE62F377F8c0eA1de97F2a2Ba102e98", // TJPZeFEdc4TBEcNbku5xVZLQ6B2Q1oGnd1
+        },
       },
       filter: {
         event: [
