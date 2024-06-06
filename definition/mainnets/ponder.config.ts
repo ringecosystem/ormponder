@@ -51,8 +51,8 @@ export default createConfig({
     },
     polygon: {
       chainId: 137,
-      transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
-      // transport: http(`https://polygon-hrpc.vercel.app/`),
+      // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
+      transport: http(`https://polygon-hrpc.vercel.app/`),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     tron: {
@@ -86,7 +86,7 @@ export default createConfig({
           startBlock: 6314163,
         },
         polygon: {
-          startBlock: 57819611,
+          startBlock: 57819999,
         },
         tron: {
           startBlock: 62333124,
