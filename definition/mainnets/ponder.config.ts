@@ -19,7 +19,7 @@ export default createConfig({
         "https://arbitrum-hrpc.vercel.app/"
         // "https://rpc.ankr.com/arbitrum"
       ),
-      maxRequestsPerSecond: 25,
+      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     blast: {
       chainId: 81457,
