@@ -16,8 +16,8 @@ export default createConfig({
       transport: http(
         // `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`
         // "https://arb1.arbitrum.io/rpc"
-        // "https://arbitrum-hrpc.vercel.app/"
-        "https://rpc.ankr.com/arbitrum"
+        "https://arbitrum-hrpc.vercel.app/"
+        // "https://rpc.ankr.com/arbitrum"
       ),
       maxRequestsPerSecond: 25,
     },
