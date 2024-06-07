@@ -15,10 +15,11 @@ export default createConfig({
       chainId: 42161,
       transport: http(
         // `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`
-        "https://arb1.arbitrum.io/rpc"
+        // "https://arb1.arbitrum.io/rpc"
         // "https://arbitrum-hrpc.vercel.app/"
+        "https://rpc.ankr.com/arbitrum"
       ),
-      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
+      maxRequestsPerSecond: 25,
     },
     blast: {
       chainId: 81457,
