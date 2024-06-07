@@ -7,18 +7,19 @@ import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const BLAST_API_KEY = process.env.BLAST_API_KEY;
 const MAX_REQUESTS_PER_SECOND = 5;
-const FAST_MAX_REQUESTS_PER_SECOND = 50;
+const FAST_MAX_REQUESTS_PER_SECOND = 20;
 
 export default createConfig({
   networks: {
     arbitrum: {
       chainId: 42161,
-      transport: loadBalance([
-        http(`https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`),
-        // "https://arb1.arbitrum.io/rpc"
-        http("https://arbitrum-hrpc.vercel.app/"),
-        // "https://rpc.ankr.com/arbitrum"
-      ]),
+      transport: http(`https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`),
+      // loadBalance([
+      //   http(`https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`),
+      //   // "https://arb1.arbitrum.io/rpc"
+      //   // http("https://arbitrum-hrpc.vercel.app/"),
+      //   // "https://rpc.ankr.com/arbitrum"
+      // ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     blast: {
@@ -52,11 +53,11 @@ export default createConfig({
     },
     polygon: {
       chainId: 137,
-      // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
-      transport: loadBalance([
-        http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
-        http(`https://polygon-hrpc.vercel.app/`),
-      ]),
+      transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
+      // transport: loadBalance([
+      //   http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
+      //   http(`https://polygon-hrpc.vercel.app/`),
+      // ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     tron: {
