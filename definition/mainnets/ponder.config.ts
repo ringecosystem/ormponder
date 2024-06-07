@@ -1,4 +1,4 @@
-import { createConfig } from "@ponder/core";
+import { createConfig, loadBalance } from "@ponder/core";
 import { http } from "viem";
 
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
@@ -13,12 +13,12 @@ export default createConfig({
   networks: {
     arbitrum: {
       chainId: 42161,
-      transport: http(
-        // `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`
+      transport: loadBalance([
+        http(`https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`),
         // "https://arb1.arbitrum.io/rpc"
-        "https://arbitrum-hrpc.vercel.app/"
+        http("https://arbitrum-hrpc.vercel.app/"),
         // "https://rpc.ankr.com/arbitrum"
-      ),
+      ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     blast: {
@@ -53,7 +53,10 @@ export default createConfig({
     polygon: {
       chainId: 137,
       // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
-      transport: http(`https://polygon-hrpc.vercel.app/`),
+      transport: loadBalance([
+        http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
+        http(`https://polygon-hrpc.vercel.app/`),
+      ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     tron: {
