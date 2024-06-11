@@ -1,4 +1,4 @@
-import { createConfig } from "@ponder/core";
+import { createConfig, loadBalance } from "@ponder/core";
 import { http } from "viem";
 
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
@@ -14,13 +14,12 @@ export default createConfig({
     // testnets
     arbitrum_sepolia: {
       chainId: 421614,
-      transport: http(
-        INFURA_API_KEY
-          ? `https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`
-          // : "https://arbitrum-sepolia-hrpc.vercel.app/"
-          : "https://sepolia-rollup.arbitrum.io/rpc"
-      ),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      transport: loadBalance([
+        http("https://arbitrum-sepolia-hrpc.vercel.app/"),
+        http("https://sepolia-rollup.arbitrum.io/rpc"),
+        http(`https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`),
+      ]),
+      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     koi: {
       chainId: 701,
@@ -29,17 +28,18 @@ export default createConfig({
     },
     pangoro: {
       chainId: 45,
-      transport: http("https://fraa-flashbox-2871-rpc.a.stagenet.tanssi.network"),
+      transport: http(
+        "https://fraa-flashbox-2871-rpc.a.stagenet.tanssi.network"
+      ),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
     sepolia: {
       chainId: 11155111,
-      transport: http(
-        INFURA_API_KEY
-          ? `https://sepolia.infura.io/v3/${INFURA_API_KEY}`
-          // : "https://sepolia-hrpc.vercel.app/"
-          : "https://rpc2.sepolia.org"
-      ),
+      transport: loadBalance([
+        http("https://rpc2.sepolia.org"),
+        http("https://sepolia-hrpc.vercel.app/"),
+        http(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`),
+      ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     taiko_hekla: {
@@ -54,8 +54,10 @@ export default createConfig({
     },
     darwinia: {
       chainId: 46,
-      transport: http("http://c1.darwinia-rpc.itering.io:9944/"),
-      // transport: http("https://darwinia-hrpc.vercel.app/"),
+      transport: loadBalance([
+        http("http://c1.darwinia-rpc.itering.io:9944/"),
+        http("https://darwinia-hrpc.vercel.app/"),
+      ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },
@@ -63,27 +65,27 @@ export default createConfig({
     // === V2
     ORMPV2: {
       abi: ORMPAbiV2,
-      address: "0xA72d283015c01807bc0788Bf22C1A774bDbFC8fA",
+      address: "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
       network: {
         // testnets
-        koi: {
-          startBlock: 8073,
-        },
+        // koi: {
+        //   startBlock: 8073,
+        // },
         pangoro: {
-          startBlock: 229000,
+          startBlock: 356208,
         },
         sepolia: {
-          startBlock: 5967541,
+          startBlock: 6083800,
         },
         arbitrum_sepolia: {
-          startBlock: 47378439,
+          startBlock: 53486700,
         },
         taiko_hekla: {
-          startBlock: 204774,
+          startBlock: 311800,
         },
         tron_shasta: {
-          startBlock: 44338539,
-          address: "0x841B6b2F3148131Ac161d88edFb2C11F146e189F", // TN1j3Ttt1c1mB3X2zdKkdMsUK6pZyLCxSr
+          startBlock: 44847100,
+          address: "0x924A4b87900A8CE8F8Cf62360Db047C4e4fFC1a3", // TPJifBA5MvFf918VYnajd2XmEept4iBX55
         },
         // mainnets
       },
@@ -101,7 +103,7 @@ export default createConfig({
       address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
       network: {
         darwinia: {
-          startBlock: 2761609,
+          startBlock: 2885094,
         },
       },
     },
