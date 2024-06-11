@@ -17,7 +17,7 @@ export default createConfig({
       transport: loadBalance([
         http("https://arbitrum-sepolia-hrpc.vercel.app/"),
         http("https://sepolia-rollup.arbitrum.io/rpc"),
-        http(`https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`),
+        // http(`https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`),
       ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
@@ -38,7 +38,7 @@ export default createConfig({
       transport: loadBalance([
         http("https://rpc2.sepolia.org"),
         http("https://sepolia-hrpc.vercel.app/"),
-        http(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`),
+        // http(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`),
       ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
