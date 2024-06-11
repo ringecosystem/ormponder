@@ -17,7 +17,7 @@ export default createConfig({
       transport: loadBalance([
         http(`https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`),
         // "https://arb1.arbitrum.io/rpc"
-        http("https://arbitrum-hrpc.vercel.app/"),
+        // http("https://arbitrum-hrpc.vercel.app/"),
         // "https://rpc.ankr.com/arbitrum"
       ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
@@ -56,7 +56,7 @@ export default createConfig({
       // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
       transport: loadBalance([
         http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
-        http(`https://polygon-hrpc.vercel.app/`),
+        // http(`https://polygon-hrpc.vercel.app/`),
       ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
