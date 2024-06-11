@@ -68,9 +68,9 @@ export default createConfig({
       address: "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
       network: {
         // testnets
-        // koi: {
-        //   startBlock: 8073,
-        // },
+        koi: {
+          startBlock: 42300,
+        },
         pangoro: {
           startBlock: 356208,
         },
