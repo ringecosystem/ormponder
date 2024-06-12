@@ -58,7 +58,7 @@ export default createConfig({
       // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
       transport: loadBalance([
         http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
-        http(`https://polygon-hrpc.vercel.app/`),
+        // http(`https://polygon-hrpc.vercel.app/`),
       ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
