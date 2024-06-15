@@ -30,7 +30,7 @@ export default createConfig({
       chainId: 44,
       transport: loadBalance([
         http("http://c1.crab-rpc.itering.io:9944/"),
-        http("https://crab-hrpc.vercel.app/"),
+        // http("https://crab-hrpc.vercel.app/"),
         // http("http://c2.crab-rpc.itering.io:9944/"),
       ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
