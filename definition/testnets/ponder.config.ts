@@ -15,7 +15,7 @@ export default createConfig({
     arbitrum_sepolia: {
       chainId: 421614,
       transport: loadBalance([
-        http("https://arbitrum-sepolia-hrpc.vercel.app/"),
+        http("https://hrpc.darwinia.network/arbitrum-sepolia"),
         http("https://sepolia-rollup.arbitrum.io/rpc"),
         http(`https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`),
       ]),
@@ -37,7 +37,7 @@ export default createConfig({
       chainId: 11155111,
       transport: loadBalance([
         http("https://rpc2.sepolia.org"),
-        http("https://sepolia-hrpc.vercel.app/"),
+        http("https://hrpc.darwinia.network/sepolia"),
         http(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`),
       ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
@@ -56,7 +56,7 @@ export default createConfig({
       chainId: 46,
       transport: loadBalance([
         http("http://c1.darwinia-rpc.itering.io:9944/"),
-        http("https://darwinia-hrpc.vercel.app/"),
+        http("https://hrpc.darwinia.network/darwinia"),
       ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },

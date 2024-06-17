@@ -16,7 +16,7 @@ export default createConfig({
       transport: loadBalance([
         http(`https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`),
         // "https://arb1.arbitrum.io/rpc"
-        http("https://arbitrum-hrpc.vercel.app/"),
+        http("https://hrpc.darwinia.network/arbitrum"),
         // "https://rpc.ankr.com/arbitrum"
       ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
@@ -30,7 +30,7 @@ export default createConfig({
       chainId: 44,
       transport: loadBalance([
         http("http://c1.crab-rpc.itering.io:9944/"),
-        // http("https://crab-hrpc.vercel.app/"),
+        // http("https://hrpc.darwinia.network/crab"),
         // http("http://c2.crab-rpc.itering.io:9944/"),
       ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
@@ -38,7 +38,7 @@ export default createConfig({
     darwinia: {
       chainId: 46,
       transport: http("http://c1.darwinia-rpc.itering.io:9944/"),
-      // transport: http("https://darwinia-hrpc.vercel.app/"),
+      // transport: http("https://hrpc.darwinia.network/darwinia"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
     ethereum: {
@@ -58,7 +58,7 @@ export default createConfig({
       // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
       transport: loadBalance([
         http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
-        // http(`https://polygon-hrpc.vercel.app/`),
+        // http(`https://hrpc.darwinia.network/polygon`),
       ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
