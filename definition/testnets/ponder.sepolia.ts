@@ -11,52 +11,12 @@ const FAST_MAX_REQUESTS_PER_SECOND = 10;
 
 export default createConfig({
   networks: {
-    // testnets
-    arbitrum_sepolia: {
-      chainId: 421614,
-      transport: loadBalance([
-        http("https://hrpc.darwinia.network/arbitrum-sepolia"),
-        http("https://sepolia-rollup.arbitrum.io/rpc"),
-        http(`https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`),
-      ]),
-      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
-    },
-    koi: {
-      chainId: 701,
-      transport: http("https://koi-rpc.darwinia.network"),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
-    },
-    pangoro: {
-      chainId: 45,
-      transport: http(
-        "https://fraa-flashbox-2871-rpc.a.stagenet.tanssi.network"
-      ),
-      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
-    },
     sepolia: {
       chainId: 11155111,
       transport: loadBalance([
         http("https://rpc2.sepolia.org"),
         http("https://hrpc.darwinia.network/sepolia"),
         http(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`),
-      ]),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
-    },
-    taiko_hekla: {
-      chainId: 167009,
-      transport: http("https://rpc.hekla.taiko.xyz"),
-      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
-    },
-    tron_shasta: {
-      chainId: 2494104990,
-      transport: http("https://api.shasta.trongrid.io/jsonrpc"),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
-    },
-    darwinia: {
-      chainId: 46,
-      transport: loadBalance([
-        http("http://c1.darwinia-rpc.itering.io:9944/"),
-        http("https://hrpc.darwinia.network/darwinia"),
       ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
@@ -96,15 +56,6 @@ export default createConfig({
           "MessageAssigned",
           "HashImported",
         ],
-      },
-    },
-    SignaturePub: {
-      abi: SignaturePubAbi,
-      address: "0xb2aa34fde97ffdb6197dd5a2be23c2121405cc12",
-      network: {
-        darwinia: {
-          startBlock: 2885094,
-        },
       },
     },
   },
