@@ -24,8 +24,8 @@ export default createConfig({
       abi: ORMPAbiV2,
       address: "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
       network: {
-        crab: {
-          startBlock: 2900604,
+        darwinia: {
+          startBlock: 2830100,
         },
       },
       filter: {

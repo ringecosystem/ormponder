@@ -29,16 +29,19 @@ async function _copy(lifecycle) {
   const {chain} = lifecycle;
   const pathDefinition = `${_projectdir()}/definition`;
   const pathMainnetsChain = `${pathDefinition}/mainnets/ponder.${chain}.ts`;
-  const pathTestnetsChain = `${pathDefinition}n/testnets/ponder.${chain}.ts`;
+  const pathTestnetsChain = `${pathDefinition}/testnets/ponder.${chain}.ts`;
 
+  console.log(pathMainnetsChain, pathTestnetsChain);
   if (await fs.pathExists(pathMainnetsChain)) {
     await fs.copy(pathMainnetsChain, `${_projectdir()}/ponder.config.ts`);
-    await fs.copy(`$${pathDefinition}/mainnets/address.ts`, `${_projectdir()}/src/address.local.ts`);
+    await fs.copy(`${pathDefinition}/mainnets/address.ts`, `${_projectdir()}/src/address.local.ts`);
+    console.log(`generate from ${pathMainnetsChain}`);
   }
   if (await fs.pathExists(pathTestnetsChain)) {
     await fs.copy(pathTestnetsChain, `${_projectdir()}/ponder.config.ts`);
-    await fs.copy(`$${pathDefinition}/testnets/address.ts`, `${_projectdir()}/src/address.local.ts`);
-  } 
+    await fs.copy(`${pathDefinition}/testnets/address.ts`, `${_projectdir()}/src/address.local.ts`);
+    console.log(`generate from ${pathTestnetsChain}`);
+  }
   console.log('definition file generated');
 }
 

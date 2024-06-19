@@ -122,24 +122,26 @@ ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
   }
 });
 
-ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
-  const { SignatureSubmittion } = context.db;
-  // filter other channels
-  if (address.listenSignature.includes(event.args.channel)) {
-    await SignatureSubmittion.create({
-      id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
-      data: {
-        blockNumber: event.block.number,
-        blockTimestamp: event.block.timestamp,
-        transactionHash: event.transaction.hash,
+if (process.env['ORMPONDER_ENABLE_SIGNATURE']) {
+  ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
+    const { SignatureSubmittion } = context.db;
+    // filter other channels
+    if (address.listenSignature.includes(event.args.channel)) {
+      await SignatureSubmittion.create({
+        id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
+        data: {
+          blockNumber: event.block.number,
+          blockTimestamp: event.block.timestamp,
+          transactionHash: event.transaction.hash,
 
-        srcChainId: event.args.chainId,
-        channel: event.args.channel,
-        msgIndex: event.args.msgIndex,
-        signer: event.args.signer,
-        signature: event.args.signature,
-        data: event.args.data,
-      },
-    });
-  }
-});
+          srcChainId: event.args.chainId,
+          channel: event.args.channel,
+          msgIndex: event.args.msgIndex,
+          signer: event.args.signer,
+          signature: event.args.signature,
+          data: event.args.data,
+        },
+      });
+    }
+  });
+}

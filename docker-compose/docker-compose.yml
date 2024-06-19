@@ -1,0 +1,82 @@
+version: '3.9'
+services:
+
+  postgres:
+    extends:
+      file: docker-compose.common.yml
+      service: postgres
+
+  ormponder-arbitrum:
+    extends:
+      file: docker-compose.common.yml
+      service: ormponder-runner
+    container_name: ormponder-arbitrum
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ormponder_arbitrum
+      BLAST_API_KEY: 774cfbdb-e3e8-447a-8b0a-b1cef01d299d
+    command: ["/app/ponder.sh", "arbitrum", "start"]
+
+  ormponder-blast:
+    extends:
+      file: docker-compose.common.yml
+      service: ormponder-runner
+    container_name: ormponder-blast
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ormponder_blast
+    command: ["/app/ponder.sh", "blast", "start"]
+
+  ormponder-crab:
+    extends:
+      file: docker-compose.common.yml
+      service: ormponder-runner
+    container_name: ormponder-crab
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ormponder_crab
+    command: ["/app/ponder.sh", "crab", "start"]
+
+  ormponder-darwinia:
+    extends:
+      file: docker-compose.common.yml
+      service: ormponder-runner
+    container_name: ormponder-darwinia
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ormponder_darwinia
+    command: ["/app/ponder.sh", "darwinia", "start"]
+
+  ormponder-ethereum:
+    extends:
+      file: docker-compose.common.yml
+      service: ormponder-runner
+    container_name: ormponder-ethereum
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ormponder_ethereum
+    command: ["/app/ponder.sh", "ethereum", "start"]
+
+  ormponder-moonbeam:
+    extends:
+      file: docker-compose.common.yml
+      service: ormponder-runner
+    container_name: ormponder-moonbeam
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ormponder_moonbeam
+      BLAST_API_KEY: 774cfbdb-e3e8-447a-8b0a-b1cef01d299d
+    command: ["/app/ponder.sh", "moonbeam", "start"]
+
+  ormponder-polygon:
+    extends:
+      file: docker-compose.common.yml
+      service: ormponder-runner
+    container_name: ormponder-polygon
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ormponder_polygon
+      BLAST_API_KEY: 774cfbdb-e3e8-447a-8b0a-b1cef01d299d
+    command: ["/app/ponder.sh", "polygon", "start"]
+
+  ormponder-tron:
+    extends:
+      file: docker-compose.common.yml
+      service: ormponder-runner
+    container_name: ormponder-tron
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ormponder_tron
+    command: ["/app/ponder.sh", "tron", "start"]

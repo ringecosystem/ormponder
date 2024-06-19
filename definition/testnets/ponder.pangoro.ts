@@ -25,27 +25,9 @@ export default createConfig({
       abi: ORMPAbiV2,
       address: "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
       network: {
-        // testnets
-        koi: {
-          startBlock: 42300,
-        },
         pangoro: {
           startBlock: 356208,
         },
-        sepolia: {
-          startBlock: 6083800,
-        },
-        arbitrum_sepolia: {
-          startBlock: 53486700,
-        },
-        taiko_hekla: {
-          startBlock: 311800,
-        },
-        tron_shasta: {
-          startBlock: 44847100,
-          address: "0x924A4b87900A8CE8F8Cf62360Db047C4e4fFC1a3", // TPJifBA5MvFf918VYnajd2XmEept4iBX55
-        },
-        // mainnets
       },
       filter: {
         event: [
