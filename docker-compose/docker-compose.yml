@@ -1,10 +1,28 @@
-version: '3.9'
+version: '3'
 services:
 
   postgres:
     extends:
       file: docker-compose.common.yml
       service: postgres
+
+  proxy:
+    image: nginx:1.27-alpine
+    container_name: ormponder-proxy
+    restart: always
+    depends_on:
+      - ormponder-arbitrum
+      - ormponder-blast
+      - ormponder-crab
+      - ormponder-darwinia
+      - ormponder-ethereum
+      - ormponder-moonbeam
+      - ormponder-polygon
+      - ormponder-tron
+    volumes:
+      - "./proxy:/etc/nginx/conf.d"
+    ports:
+      - 42069:80
 
   ormponder-arbitrum:
     extends:
