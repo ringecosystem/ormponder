@@ -14,7 +14,7 @@ function _lifecycle() {
 async function _check(lifecycle) {
   const {chain} = lifecycle;
   if (!chain) {
-    console.log(chalk.red('missing group, please add --chain or set ORMPONDER_CHAIN'));
+    console.log(chalk.red('missing chain, please add --chain or set ORMPONDER_CHAIN'));
     process.exit(1)
   }
   const pathMainnetsChain = `${_projectdir()}/definition/mainnets/ponder.${chain}.ts`;
