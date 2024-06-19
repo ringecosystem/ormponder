@@ -3,8 +3,12 @@ services:
 
   postgres:
     extends:
-      file: docker-compose.common.yml
+      file: ../common/docker-compose.common.yml
       service: postgres
+    volumes:
+      - ./.data/postgres:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: ormponder-postgres-mainnets
 
   proxy:
     image: nginx:1.27-alpine
@@ -20,13 +24,13 @@ services:
       - ormponder-polygon
       - ormponder-tron
     volumes:
-      - "./proxy:/etc/nginx/conf.d"
+      - "../proxy:/etc/nginx/conf.d"
     ports:
       - 42069:80
 
   ormponder-arbitrum:
     extends:
-      file: docker-compose.common.yml
+      file: ../common/docker-compose.common.yml
       service: ormponder-runner
     container_name: ormponder-arbitrum
     environment:
@@ -36,7 +40,7 @@ services:
 
   ormponder-blast:
     extends:
-      file: docker-compose.common.yml
+      file: ../common/docker-compose.common.yml
       service: ormponder-runner
     container_name: ormponder-blast
     environment:
@@ -45,7 +49,7 @@ services:
 
   ormponder-crab:
     extends:
-      file: docker-compose.common.yml
+      file: ../common/docker-compose.common.yml
       service: ormponder-runner
     container_name: ormponder-crab
     environment:
@@ -54,7 +58,7 @@ services:
 
   ormponder-darwinia:
     extends:
-      file: docker-compose.common.yml
+      file: ../common/docker-compose.common.yml
       service: ormponder-runner
     container_name: ormponder-darwinia
     environment:
@@ -63,7 +67,7 @@ services:
 
   ormponder-ethereum:
     extends:
-      file: docker-compose.common.yml
+      file: ../common/docker-compose.common.yml
       service: ormponder-runner
     container_name: ormponder-ethereum
     environment:
@@ -72,7 +76,7 @@ services:
 
   ormponder-moonbeam:
     extends:
-      file: docker-compose.common.yml
+      file: ../common/docker-compose.common.yml
       service: ormponder-runner
     container_name: ormponder-moonbeam
     environment:
@@ -82,7 +86,7 @@ services:
 
   ormponder-polygon:
     extends:
-      file: docker-compose.common.yml
+      file: ../common/docker-compose.common.yml
       service: ormponder-runner
     container_name: ormponder-polygon
     environment:
@@ -92,7 +96,7 @@ services:
 
   ormponder-tron:
     extends:
-      file: docker-compose.common.yml
+      file: ../common/docker-compose.common.yml
       service: ormponder-runner
     container_name: ormponder-tron
     environment:
