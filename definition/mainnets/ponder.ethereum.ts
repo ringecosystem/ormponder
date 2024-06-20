@@ -12,8 +12,10 @@ export default createConfig({
   networks: {
     ethereum: {
       chainId: 1,
-      // transport: http(`https://eth-mainnet.blastapi.io/${BLAST_API_KEY}`),
-      transport: http(`https://mainnet.infura.io/v3/${INFURA_API_KEY}`),
+      transport: loadBalance([
+        transport: http(`https://eth-mainnet.blastapi.io/${BLAST_API_KEY}`),
+        transport: http(`https://mainnet.infura.io/v3/${INFURA_API_KEY}`),
+      ]),
 
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
