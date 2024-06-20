@@ -1,4 +1,4 @@
-import {createConfig} from "@ponder/core";
+import {createConfig, loadBalance} from "@ponder/core";
 import {http} from "viem";
 
 import {ORMPAbi as ORMPAbiV2} from "./abis/v2/ORMPAbi";
@@ -14,7 +14,7 @@ export default createConfig({
       chainId: 1,
       transport: loadBalance([
         http(`https://eth-mainnet.blastapi.io/${BLAST_API_KEY}`),
-        //transport: http(`https://mainnet.infura.io/v3/${INFURA_API_KEY}`),
+        // http(`https://mainnet.infura.io/v3/${INFURA_API_KEY}`),
       ]),
 
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
