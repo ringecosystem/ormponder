@@ -14,8 +14,8 @@ export default createConfig({
       chainId: 137,
       // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
       transport: loadBalance([
-        // http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
-        http(`https://hrpc.darwinia.network/polygon`),
+        http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
+        // http(`https://hrpc.darwinia.network/polygon`),
       ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
