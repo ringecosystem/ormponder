@@ -17,7 +17,7 @@ export default createConfig({
       transport: loadBalance([
         http("https://hrpc.darwinia.network/arbitrum-sepolia"),
         http("https://sepolia-rollup.arbitrum.io/rpc"),
-        http(`https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`),
+        // http(`https://arbitrum-sepolia.infura.io/v3/${INFURA_API_KEY}`),
       ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },

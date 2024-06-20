@@ -16,7 +16,7 @@ export default createConfig({
       transport: loadBalance([
         http("https://rpc2.sepolia.org"),
         http("https://hrpc.darwinia.network/sepolia"),
-        http(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`),
+        // http(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`),
       ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
