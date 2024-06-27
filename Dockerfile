@@ -3,8 +3,9 @@ FROM node:21-alpine
 COPY . /app
 
 RUN cd /app && \
-    yarn install && \
-    yarn codegen
+    yarn install
+RUN npx zx /app/scripts/init.mjs --chain=darwinia \
+    && yarn codegen
 
 WORKDIR /app
 
