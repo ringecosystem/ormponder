@@ -13,7 +13,8 @@ export default createConfig({
   networks: {
     blast: {
       chainId: 81457,
-      transport: http("https://rpc.blast.io"),
+      // transport: http("https://rpc.blast.io"),
+      transport: http(`https://blastl2-mainnet.blastapi.io/${BLAST_API_KEY}`),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },
