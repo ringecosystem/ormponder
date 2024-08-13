@@ -11,4 +11,5 @@ export const listenOracle = [
 export const listenSignature = [
     "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
     "0x5C5c383FEbE62F377F8c0eA1de97F2a2Ba102e98", // TJPZeFEdc4TBEcNbku5xVZLQ6B2Q1oGnd1
+    "0x924A4b87900A8CE8F8Cf62360Db047C4e4fFC1a3", // Tron Shasta TPJifBA5MvFf918VYnajd2XmEept4iBX55
 ];
