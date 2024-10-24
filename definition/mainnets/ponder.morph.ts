@@ -26,7 +26,7 @@ export default createConfig({
       address: "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
       network: {
         morph: {
-          startBlock: 217891600, // todo: update this
+          startBlock: 59565,
         },
       },
       filter: {
