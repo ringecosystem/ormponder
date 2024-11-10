@@ -13,7 +13,7 @@ export default createConfig({
   networks: {
     darwinia: {
       chainId: 46,
-      transport: http("http://c1.darwinia-rpc.itering.io:9944/"),
+      transport: http("http://c2.darwinia-rpc.itering.io:9944/"),
       // transport: http("https://hrpc.darwinia.network/darwinia"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
