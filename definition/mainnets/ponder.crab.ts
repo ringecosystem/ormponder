@@ -14,11 +14,11 @@ export default createConfig({
     crab: {
       chainId: 44,
       transport: loadBalance([
-        // http("http://c1.crab-rpc.itering.io:9944/"),
+        http("http://c1.crab-rpc.itering.io:9944/"),
         // http("https://hrpc.darwinia.network/crab"),
         // http("http://c2.crab-rpc.itering.io:9944/"),
         // http("http://g1.crab2.darwinia.network:9944/"),
-        http("http://c1.crab2.darwinia.network:9944/"),
+        // http("http://c1.crab2.darwinia.network:9944/"),
       ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
