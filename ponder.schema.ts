@@ -1,6 +1,32 @@
 import { createSchema } from "@ponder/core";
 
 export default createSchema((p) => ({
+  // === msgport
+  MessageSent: p.createTable({
+    id: p.string(),
+    blockNumber: p.bigint(),
+    blockTimestamp: p.bigint(),
+    transactionHash: p.string(),
+
+    chainId: p.bigint(),
+    msgId: p.string(),
+    fromDapp: p.string(),
+    toChainId: p.bigint(),
+    toDapp: p.string(),
+    message: p.string(),
+    params: p.string(),
+  }),
+  MessageReceived: p.createTable({
+    id: p.string(),
+    blockNumber: p.bigint(),
+    blockTimestamp: p.bigint(),
+    transactionHash: p.string(),
+
+    chainId: p.bigint(),
+    msgId: p.string(),
+    result: p.boolean(),
+    returnData: p.string(),
+  }),
   // === V2
   MessageAcceptedV2: p.createTable({
     id: p.string(),

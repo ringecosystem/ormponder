@@ -1,6 +1,43 @@
 import { ponder } from "@/generated";
 import * as address from './address.local'
 
+ponder.on("Msgport:MessageSent", async ({ event, context }) => {
+  const { MessageSent } = context.db;
+  await MessageSent.create({
+    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
+    data: {
+      blockNumber: event.block.number,
+      blockTimestamp: event.block.timestamp,
+      transactionHash: event.transaction.hash,
+
+      chainId: BigInt(context.network.chainId),
+      msgId: event.args.msgId,
+      fromDapp: event.args.fromDapp,
+      toChainId: event.args.toChainId,
+      toDapp: event.args.toDapp,
+      message: event.args.message,
+      params: event.args.params,
+    },
+  });
+});
+
+ponder.on("Msgport:MessageRecv", async ({ event, context }) => {
+  const { MessageReceived } = context.db;
+  await MessageReceived.create({
+    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
+    data: {
+      blockNumber: event.block.number,
+      blockTimestamp: event.block.timestamp,
+      transactionHash: event.transaction.hash,
+
+      chainId: BigInt(context.network.chainId),
+      msgId: event.args.msgId,
+      result: event.args.result,
+      returnData: event.args.returnData,
+    },
+  });
+});
+
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
   const { MessageAcceptedV2 } = context.db;
   const message = event.args.message;
