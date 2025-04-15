@@ -2,7 +2,7 @@ import { createConfig, loadBalance } from "@ponder/core";
 import { http } from "viem";
 
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
-import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
+import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
 // const INFURA_API_KEY = null;
@@ -23,6 +23,18 @@ export default createConfig({
     },
   },
   contracts: {
+    Msgport: {
+      abi: MsgportAbi,
+      address: "0x2cd1867Fb8016f93710B6386f7f9F1D540A60812",
+      network: {
+        arbitrum_sepolia: {
+          startBlock: 53486700,
+        },
+      },
+      filter: {
+        event: ["MessageSent", "MessageRecv"],
+      },
+    },
     // === V2
     ORMPV2: {
       abi: ORMPAbiV2,
