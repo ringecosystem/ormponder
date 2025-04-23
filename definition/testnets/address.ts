@@ -3,8 +3,9 @@ export const listenRelayer = [
     "0xFF9b99c9F654DAFB00a9EbEd42D221b261ceB8a6", // TZGjiJcoqUo6JSZeYvrwN6qvpEcLm21QbG
 ];
 export const listenOracle = [
-    "0xBE01B76AB454aE2497aE43168b1F70C92Ac1C726",
-    "0x266Aa1Ef524b1D13C92bF3CC57cA7b12a0C72aB1", // TDULRJrJ2bbsvW3KKtEnnq9moPn5PyUWpd
+    "0xB49E82067a54b3E8c5D9Db2f378FdB6892C04D2E",
+    // testnet tron oracle address not changed.
+    "0x266Aa1Ef524b1D13C92bF3CC57cA7b12a0C72aB1", // TDULRJrJ2bbsvW3KKtEnnq9moPn5PyUWpd 
 ];
 export const listenSignature = [
     "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",

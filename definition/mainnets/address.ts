@@ -6,8 +6,8 @@ export const listenRelayer = [
 ];
 export const listenOracle = [
   // todo: update oracle address
-    "0xBE01B76AB454aE2497aE43168b1F70C92Ac1C726",
-    "0xD250c974cbe8eEa25Ab75c0Fc9a18D612Ae4b043", // TV9FgX1jHSg1k6kEaZtYR2ZH4AdqnMCDak
+    "0xB49E82067a54b3E8c5D9Db2f378FdB6892C04D2E",
+    "0x985BDdbC7E66964f131E3161BA8864f481cBCb2D", // TPromBxYmvqGe73kDxHDhLGEGgoRhwkQsk
 ];
 export const listenSignature = [
     "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
