@@ -13,7 +13,7 @@ export default createConfig({
   networks: {
     arbitrum: {
       chainId: 42161,
-      transport: http(`https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`),
+      transport: http(process.env.ENDPOINT_42161 || `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
   },
