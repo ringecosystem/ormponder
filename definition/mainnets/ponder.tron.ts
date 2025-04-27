@@ -13,7 +13,7 @@ export default createConfig({
   networks: {
     tron: {
       chainId: 728126428,
-      transport: http("https://api.trongrid.io/jsonrpc"),
+      transport: http(process.env.ENDPOINT_728126428 || "https://api.trongrid.io/jsonrpc"),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },

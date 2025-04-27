@@ -15,7 +15,7 @@ export default createConfig({
       chainId: 137,
       // transport: http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
       transport: loadBalance([
-        http(`https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
+        http(process.env.ENDPOINT_137 || `https://polygon-mainnet.blastapi.io/${BLAST_API_KEY}`),
         // http(`https://hrpc.darwinia.network/polygon`),
         // http(`https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}`)
       ]),

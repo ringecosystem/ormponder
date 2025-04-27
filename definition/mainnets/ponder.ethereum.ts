@@ -14,7 +14,7 @@ export default createConfig({
     ethereum: {
       chainId: 1,
       transport: loadBalance([
-        http(`https://eth-mainnet.blastapi.io/${BLAST_API_KEY}`),
+        http(process.env.ENDPOINT_1 || `https://eth-mainnet.blastapi.io/${BLAST_API_KEY}`),
         // http(`https://mainnet.infura.io/v3/${INFURA_API_KEY}`),
       ]),
 

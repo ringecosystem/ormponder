@@ -15,7 +15,7 @@ export default createConfig({
       chainId: 1284,
       // transport: http(`https://moonbeam.blastapi.io/${BLAST_API_KEY}`),
       // transport: http(`https://hrpc.darwinia.network/moonbeam`),
-      transport: http(`https://moonbeam.api.onfinality.io/public`),
+      transport: http(process.env.ENDPOINT_1284 || `https://moonbeam.api.onfinality.io/public`),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },

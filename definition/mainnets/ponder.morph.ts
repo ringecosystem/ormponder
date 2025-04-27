@@ -14,7 +14,7 @@ export default createConfig({
     morph: {
       chainId: 2818,
       transport: loadBalance([
-        http("https://rpc.morphl2.io"),
+        http(process.env.ENDPOINT_2818 || "https://rpc.morphl2.io"),
       ]),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },

@@ -14,7 +14,7 @@ export default createConfig({
     blast: {
       chainId: 81457,
       // transport: http("https://rpc.blast.io"),
-      transport: http(`https://blastl2-mainnet.blastapi.io/${BLAST_API_KEY}`),
+      transport: http(process.env.ENDPOINT_81457 || `https://blastl2-mainnet.blastapi.io/${BLAST_API_KEY}`),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },
