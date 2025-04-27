@@ -55,7 +55,7 @@ export default createConfig({
       address: "0x57aa601a0377f5ab313c5a955ee874f5d495fc92",
       network: {
         darwinia: {
-          startBlock: 6303472,
+          startBlock: 6489588,
         },
       },
     },
