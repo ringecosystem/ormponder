@@ -5,8 +5,6 @@ import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 
-const MAX_REQUESTS_PER_SECOND = 5;
-
 export default createConfig({
   networks: {
     darwinia: {
@@ -16,7 +14,12 @@ export default createConfig({
           process.env.ENDPOINT_46 || "http://c2.darwinia-rpc.itering.io:9944/"
         ),
       ]),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      pollingInterval: process.env.POLLING_INTERVAL_46
+        ? Number(process.env.POLLING_INTERVAL_46)
+        : 1000,
+      maxRequestsPerSecond: process.env.MAX_REQUESTS_PER_SECOND_46
+        ? Number(process.env.MAX_REQUESTS_PER_SECOND_46)
+        : 5,
     },
   },
   contracts: {

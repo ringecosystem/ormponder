@@ -4,8 +4,6 @@ import { http } from "viem";
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
-const MAX_REQUESTS_PER_SECOND = 5;
-
 export default createConfig({
   networks: {
     crab: {
@@ -17,7 +15,12 @@ export default createConfig({
         // http("http://g1.crab2.darwinia.network:9944/"),
         // http("http://c1.crab2.darwinia.network:9944/"),
       ]),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      pollingInterval: process.env.POLLING_INTERVAL_44
+        ? Number(process.env.POLLING_INTERVAL_44)
+        : 1000,
+      maxRequestsPerSecond: process.env.MAX_REQUESTS_PER_SECOND_44
+        ? Number(process.env.MAX_REQUESTS_PER_SECOND_44)
+        : 5,
     },
   },
   contracts: {

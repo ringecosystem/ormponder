@@ -5,7 +5,6 @@ import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
 const BLAST_API_KEY = process.env.BLAST_API_KEY;
-const FAST_MAX_REQUESTS_PER_SECOND = 8;
 
 export default createConfig({
   networks: {
@@ -20,7 +19,13 @@ export default createConfig({
         // http(`https://hrpc.darwinia.network/polygon`),
         // http(`https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}`)
       ]),
-      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
+      // maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
+      pollingInterval: process.env.POLLING_INTERVAL_137
+        ? Number(process.env.POLLING_INTERVAL_137)
+        : 1000,
+      maxRequestsPerSecond: process.env.MAX_REQUESTS_PER_SECOND_137
+        ? Number(process.env.MAX_REQUESTS_PER_SECOND_137)
+        : 8,
     },
   },
   contracts: {

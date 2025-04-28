@@ -4,8 +4,6 @@ import { http } from "viem";
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
-const FAST_MAX_REQUESTS_PER_SECOND = 20;
-
 export default createConfig({
   networks: {
     morph: {
@@ -13,7 +11,12 @@ export default createConfig({
       transport: loadBalance([
         http(process.env.ENDPOINT_2818 || "https://rpc.morphl2.io"),
       ]),
-      maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
+      pollingInterval: process.env.POLLING_INTERVAL_2818
+        ? Number(process.env.POLLING_INTERVAL_2818)
+        : 1000,
+      maxRequestsPerSecond: process.env.MAX_REQUESTS_PER_SECOND_2818
+        ? Number(process.env.MAX_REQUESTS_PER_SECOND_2818)
+        : 20,
     },
   },
   contracts: {

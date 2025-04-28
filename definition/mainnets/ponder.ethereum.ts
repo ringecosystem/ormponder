@@ -5,7 +5,6 @@ import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
 const BLAST_API_KEY = process.env.BLAST_API_KEY;
-const MAX_REQUESTS_PER_SECOND = 5;
 
 export default createConfig({
   networks: {
@@ -18,7 +17,12 @@ export default createConfig({
         ),
         // http(`https://mainnet.infura.io/v3/${INFURA_API_KEY}`),
       ]),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      pollingInterval: process.env.POLLING_INTERVAL_1
+        ? Number(process.env.POLLING_INTERVAL_1)
+        : 1000,
+      maxRequestsPerSecond: process.env.MAX_REQUESTS_PER_SECOND_1
+        ? Number(process.env.MAX_REQUESTS_PER_SECOND_1)
+        : 5,
     },
   },
   contracts: {

@@ -4,8 +4,6 @@ import { http } from "viem";
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
-const MAX_REQUESTS_PER_SECOND = 5;
-
 export default createConfig({
   networks: {
     tron: {
@@ -15,7 +13,13 @@ export default createConfig({
           process.env.ENDPOINT_728126428 || "https://api.trongrid.io/jsonrpc"
         ),
       ]),
-      maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      // maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+      pollingInterval: process.env.POLLING_INTERVAL_728126428
+        ? Number(process.env.POLLING_INTERVAL_728126428)
+        : 1000,
+      maxRequestsPerSecond: process.env.MAX_REQUESTS_PER_SECOND_728126428
+        ? Number(process.env.MAX_REQUESTS_PER_SECOND_728126428)
+        : 5,
     },
   },
   contracts: {
