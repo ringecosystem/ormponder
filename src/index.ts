@@ -69,7 +69,7 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
       messageGasLimit: message.gasLimit,
       messageEncoded: message.encoded,
     })
-    .onConflictDoUpdate((row) => ({
+    .onConflictDoUpdate((_row) => ({
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
