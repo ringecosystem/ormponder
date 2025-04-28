@@ -63,7 +63,16 @@ async function runProcessorTron(options: RunProcessorOptions) {
 }
 
 async function main() {
+  const enableChains = process.env.ORMPINDEX_ENABLE_CHAINS;
+  const allowedChains = enableChains
+    ? enableChains.split(",").map((c) => parseInt(c))
+    : [];
   for (const ormpContract of ormpContractChains) {
+    if (allowedChains.length) {
+      if (!allowedChains.includes(ormpContract.chainId)) {
+        continue;
+      }
+    }
     const isTron =
       ormpContract.chainId === 728126428 || ormpContract.chainId === 2494104990;
     if (isTron) {

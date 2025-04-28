@@ -186,7 +186,9 @@ export class OrmpTronHandler {
       logIndex: eventLog.logIndex,
       address: helpers.stdHashString(eventLog.address),
       transactionIndex: tx.transactionIndex,
-      transactionFrom: helpers.stdHashString(internalTx.callerAddress),
+      transactionFrom: internalTx?.callerAddress
+        ? helpers.stdHashString(internalTx.callerAddress)
+        : undefined,
     };
 
     if (isHashImported) {

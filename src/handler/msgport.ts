@@ -127,7 +127,9 @@ export class MsgportTronHandler {
       logIndex: eventLog.logIndex,
       address: helpers.stdHashString(eventLog.address),
       transactionIndex: tx.transactionIndex,
-      transactionFrom: helpers.stdHashString(internalTx.callerAddress),
+      transactionFrom: internalTx?.callerAddress
+        ? helpers.stdHashString(internalTx.callerAddress)
+        : undefined,
     };
     if (isMessageRecv) {
       const event = msgportAbi.events.MessageRecv.decode(eventEvm);

@@ -51,7 +51,7 @@ export interface EventInfo {
   logIndex: number;
   address: string;
   transactionIndex: number;
-  transactionFrom: string;
+  transactionFrom?: string;
 }
 
 export interface HandlerLifecycle {
