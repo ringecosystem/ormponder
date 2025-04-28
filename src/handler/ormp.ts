@@ -9,7 +9,6 @@ import {
   EventInfo,
   EvmFieldSelection,
   HandlerLifecycle,
-  ProgressId,
   TronFieldSelection,
 } from "../types";
 import {
@@ -18,8 +17,6 @@ import {
 } from "@subsquid/tron-processor";
 import * as ormpAbi from "../abi/ormp";
 import {
-  // MessagePort,
-  // MessageProgress,
   ORMPHashImported,
   ORMPMessageAccepted,
   ORMPMessageAssigned,
@@ -87,6 +84,7 @@ export class OrmpEvmHandler {
         blockNumber: BigInt(eventLog.block.height),
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(eventLog.transactionHash),
+        logIndex: eventLog.logIndex,
 
         msgHash: helpers.stdHashString(event.msgHash),
         channel: event.message.channel,
@@ -215,6 +213,7 @@ export class OrmpTronHandler {
         blockNumber: BigInt(eventLog.block.height),
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(tx.hash),
+        logIndex: eventLog.logIndex,
 
         msgHash: helpers.stdHashString(event.msgHash),
         channel: event.message.channel,
@@ -322,74 +321,5 @@ class OrmpHandler {
     eventInfo: EventInfo
   ) {
     await this.store.insert(event);
-
-    // const storedMessageAccepted = await this.store.findOne(
-    //   ORMPMessageAccepted,
-    //   {
-    //     where: { id: event.msgHash },
-    //   }
-    // );
-
-    // // message port
-    // const storedMessagePort = await this.store.findOne(MessagePort, {
-    //   where: { id: event.msgHash },
-    // });
-    // const currentMessagePort =
-    //   storedMessagePort ??
-    //   new MessagePort({
-    //     id: event.msgHash,
-    //   });
-    // currentMessagePort.ormp = storedMessageAccepted;
-    // currentMessagePort.protocol = "ormp";
-    // currentMessagePort.status = event.dispatchResult ? 1 : 2;
-    // if (storedMessagePort) {
-    //   await this.store.save(currentMessagePort);
-    // } else {
-    //   await this.store.insert(currentMessagePort);
-    // }
-
-    // // message progress
-    // const { messageProgressCount } = this.lifecycle;
-    // messageProgressCount.inflight -= 1n;
-    // if (!event.dispatchResult) {
-    //   messageProgressCount.failed += 1n;
-    // }
-
-    // // message progress
-    // const storedProgressInflight = await this.store.findOne(MessageProgress, {
-    //   where: { id: ProgressId.inflight },
-    // });
-    // const currentProgressInflight =
-    //   storedProgressInflight ??
-    //   new MessageProgress({
-    //     id: ProgressId.inflight,
-    //     amount: 0n,
-    //   });
-
-    // currentProgressInflight.amount -= 1n;
-
-    // if (storedProgressInflight) {
-    //   await this.store.save(currentProgressInflight);
-    // } else {
-    //   await this.store.insert(currentProgressInflight);
-    // }
-
-    // if (!event.dispatchResult) {
-    //   const storedProgressFailed = await this.store.findOne(MessageProgress, {
-    //     where: { id: ProgressId.failed },
-    //   });
-    //   const currentProgressFailed =
-    //     storedProgressFailed ??
-    //     new MessageProgress({
-    //       id: ProgressId.failed,
-    //       amount: 0n,
-    //     });
-    //   currentProgressFailed.amount += 1n;
-    //   if (storedProgressFailed) {
-    //     await this.store.save(currentProgressFailed);
-    //   } else {
-    //     await this.store.insert(currentProgressFailed);
-    //   }
-    // }
   }
 }

@@ -7,22 +7,15 @@ import {
   EventInfo,
   EvmFieldSelection,
   HandlerLifecycle,
-  ProgressId,
   TronFieldSelection,
 } from "../types";
 import {
   DataHandlerContext as TronDataHandlerContext,
   Log as TronLog,
 } from "@subsquid/tron-processor";
-import * as msgportAbi from "../abi/ormpupgradeableport";
-import {
-  // MessagePort,
-  // MessageProgress,
-  ORMPMessageAccepted,
-  ORMPUpgradeablePortMessageRecv,
-  ORMPUpgradeablePortMessageSent,
-} from "../model";
+import * as msgportAbi from "../abi/msgport";
 import * as helpers from "../helpers";
+import { MsgportMessageRecv, MsgportMessageSent } from "../model";
 
 export class MsgportEvmHandler {
   private readonly msgportHandler: MsgportHandler;
@@ -54,7 +47,7 @@ export class MsgportEvmHandler {
     };
     if (isMessageRecv) {
       const event = msgportAbi.events.MessageRecv.decode(eventLog);
-      const entity = new ORMPUpgradeablePortMessageRecv({
+      const entity = new MsgportMessageRecv({
         id: eventLog.id,
         chainId: eventInfo.chainId,
         msgId: helpers.stdHashString(event.msgId),
@@ -71,7 +64,7 @@ export class MsgportEvmHandler {
     }
     if (isMessageSend) {
       const event = msgportAbi.events.MessageSent.decode(eventLog);
-      const entity = new ORMPUpgradeablePortMessageSent({
+      const entity = new MsgportMessageSent({
         id: eventLog.id,
         chainId: eventInfo.chainId,
         msgId: helpers.stdHashString(event.msgId),
@@ -138,7 +131,7 @@ export class MsgportTronHandler {
     };
     if (isMessageRecv) {
       const event = msgportAbi.events.MessageRecv.decode(eventEvm);
-      const entity = new ORMPUpgradeablePortMessageRecv({
+      const entity = new MsgportMessageRecv({
         id: eventLog.id,
         chainId: eventInfo.chainId,
         msgId: helpers.stdHashString(event.msgId),
@@ -155,7 +148,7 @@ export class MsgportTronHandler {
     }
     if (isMessageSend) {
       const event = msgportAbi.events.MessageSent.decode(eventEvm);
-      const entity = new ORMPUpgradeablePortMessageSent({
+      const entity = new MsgportMessageSent({
         id: eventLog.id,
         chainId: eventInfo.chainId,
         msgId: helpers.stdHashString(event.msgId),
@@ -182,118 +175,11 @@ class MsgportHandler {
     private readonly store: Store,
     private readonly lifecycle: HandlerLifecycle
   ) {}
-  async storeMessageRecv(
-    event: ORMPUpgradeablePortMessageRecv,
-    eventInfo: EventInfo
-  ) {
+  async storeMessageRecv(event: MsgportMessageRecv, eventInfo: EventInfo) {
     await this.store.insert(event);
-
-    // // msgport
-    // const storedMessagePort = await this.store.findOne(MessagePort, {
-    //   where: { id: helpers.stdHashString(event.msgId) },
-    // });
-    // const storedMessageAccept = await this.store.findOne(ORMPMessageAccepted, {
-    //   where: { id: helpers.stdHashString(event.msgId) },
-    // });
-    // const currentMessagePort = new MessagePort({
-    //   ...storedMessagePort,
-    //   id: helpers.stdHashString(event.msgId),
-    //   ormp: storedMessageAccept,
-    //   protocol: "ormp",
-    //   status: storedMessagePort?.status ?? (event.result ? 1 : 2),
-    //   targetBlockNumber: event.blockNumber,
-    //   targetBlockTimestamp: event.b,
-    //   targetChainId: event.chainId,
-    //   targetLogIndex: eventInfo.logIndex,
-    //   targetPortAddress: eventInfo.address,
-    //   targetTransactionHash: event.transactionHash,
-    //   targetTransactionIndex: eventInfo.transactionIndex,
-    // });
-    // if (storedMessagePort) {
-    //   await this.store.save(currentMessagePort);
-    // } else {
-    //   await this.store.insert(currentMessagePort);
-    // }
   }
 
-  async storeMessageSent(
-    event: ORMPUpgradeablePortMessageSent,
-    eventInfo: EventInfo
-  ) {
+  async storeMessageSent(event: MsgportMessageSent, eventInfo: EventInfo) {
     await this.store.insert(event);
-
-    // // msgport
-    // const storedMessagePort = await this.store.findOne(MessagePort, {
-    //   where: { id: helpers.stdHashString(event.msgId) },
-    // });
-    // const storedMessageAccept = await this.store.findOne(ORMPMessageAccepted, {
-    //   where: { id: helpers.stdHashString(event.msgId) },
-    // });
-    // const currentMessagePort = new MessagePort({
-    //   ...storedMessagePort,
-    //   id: helpers.stdHashString(event.msgId),
-    //   ormp: storedMessageAccept,
-    //   protocol: "ormp",
-    //   payload: event.message,
-    //   params: event.params,
-
-    //   sender: eventInfo.transactionFrom,
-
-    //   sourceChainId: event.chainId,
-    //   sourceBlockNumber: event.blockNumber,
-    //   sourceBlockTimestamp: event.blockTimestamp,
-    //   sourceTransactionHash: event.transactionHash,
-    //   sourceTransactionIndex: eventInfo.transactionIndex,
-    //   sourceLogIndex: eventInfo.logIndex,
-    //   sourceDappAddress: event.fromDapp,
-    //   sourcePortAddress: eventInfo.address,
-
-    //   targetChainId: event.toChainId,
-    //   targetDappAddress: event.toDapp,
-
-    //   status: storedMessagePort ? storedMessagePort.status : 0,
-    // });
-    // if (storedMessagePort) {
-    //   await this.store.save(currentMessagePort);
-    // } else {
-    //   await this.store.insert(currentMessagePort);
-    // }
-
-    // // store progress
-    // const { messageProgressCount } = this.lifecycle;
-    // messageProgressCount.total += 1n;
-    // messageProgressCount.inflight += 1n;
-
-    // // store progress
-    // const storedProgressTotal = await this.store.findOne(MessageProgress, {
-    //   where: { id: ProgressId.total },
-    // });
-    // const storedProgressInflight = await this.store.findOne(MessageProgress, {
-    //   where: { id: ProgressId.inflight },
-    // });
-    // const currentProgressTotal =
-    //   storedProgressTotal ??
-    //   new MessageProgress({
-    //     id: ProgressId.total,
-    //     amount: 0n,
-    //   });
-    // const currentProgressInflight =
-    //   storedProgressInflight ??
-    //   new MessageProgress({
-    //     id: ProgressId.inflight,
-    //     amount: 0n,
-    //   });
-    // currentProgressTotal.amount += 1n;
-    // currentProgressInflight.amount += 1n;
-    // if (storedProgressTotal) {
-    //   await this.store.save(currentProgressTotal);
-    // } else {
-    //   await this.store.insert(currentProgressTotal);
-    // }
-    // if (storedProgressInflight) {
-    //   await this.store.save(currentProgressInflight);
-    // } else {
-    //   await this.store.insert(currentProgressInflight);
-    // }
   }
 }

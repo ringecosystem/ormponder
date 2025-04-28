@@ -14,7 +14,7 @@ export interface OrmpContractConfig {
 
 const defaultOrmpContracts: OrmpContractConfig[] = [
   {
-    name: "ORMPUpgradeablePort",
+    name: "Msgport",
     address: "0x2cd1867Fb8016f93710B6386f7f9F1D540A60812",
   },
   {
@@ -105,35 +105,35 @@ export const ormpContractChains: OrmpContractChain[] = [
     startBlock: 4293849,
     contracts: defaultOrmpContracts,
   },
-  // hekala-taiko
-  {
-    chainId: 167009,
-    rpcs: extractRpcEndpoint(167009, "wss://ws.hekla.taiko.xyz"),
-    finalityConfirmation: 20,
-    startBlock: 311800,
-    contracts: defaultOrmpContracts,
-  },
-  // arbitrum-sepolia
-  {
-    chainId: 421614,
-    rpcs: extractRpcEndpoint(421614, "wss://arbitrum-sepolia.drpc.org"),
-    gateway: "https://v2.archive.subsquid.io/network/arbitrum-sepolia",
-    finalityConfirmation: 50,
-    startBlock: 53486700,
-    contracts: defaultOrmpContracts,
-  },
-  // sepolia
-  {
-    chainId: 11155111,
-    rpcs: extractRpcEndpoint(
-      11155111,
-      "wss://ethereum-sepolia-rpc.publicnode.com"
-    ),
-    gateway: "https://v2.archive.subsquid.io/network/ethereum-sepolia",
-    finalityConfirmation: 25,
-    startBlock: 6083800,
-    contracts: defaultOrmpContracts,
-  },
+  // // hekala-taiko
+  // {
+  //   chainId: 167009,
+  //   rpcs: extractRpcEndpoint(167009, "wss://ws.hekla.taiko.xyz"),
+  //   finalityConfirmation: 20,
+  //   startBlock: 311800,
+  //   contracts: defaultOrmpContracts,
+  // },
+  // // arbitrum-sepolia
+  // {
+  //   chainId: 421614,
+  //   rpcs: extractRpcEndpoint(421614, "wss://arbitrum-sepolia.drpc.org"),
+  //   gateway: "https://v2.archive.subsquid.io/network/arbitrum-sepolia",
+  //   finalityConfirmation: 50,
+  //   startBlock: 53486700,
+  //   contracts: defaultOrmpContracts,
+  // },
+  // // sepolia
+  // {
+  //   chainId: 11155111,
+  //   rpcs: extractRpcEndpoint(
+  //     11155111,
+  //     "wss://ethereum-sepolia-rpc.publicnode.com"
+  //   ),
+  //   gateway: "https://v2.archive.subsquid.io/network/ethereum-sepolia",
+  //   finalityConfirmation: 25,
+  //   startBlock: 6083800,
+  //   contracts: defaultOrmpContracts,
+  // },
   // morph
   {
     chainId: 2818,
@@ -150,7 +150,7 @@ export const ormpContractChains: OrmpContractChain[] = [
     startBlock: 65689643, // start block: 62251337
     contracts: [
       {
-        name: "ORMPUpgradeablePort",
+        name: "Msgport",
         address: "0x3Bc5362EC3a3DBc07292aEd4ef18Be18De02DA3a", // TFRF7t9m7pGLnwwX8TFsZvj85EvQ6gSBCm
       },
       {
@@ -159,20 +159,20 @@ export const ormpContractChains: OrmpContractChain[] = [
       },
     ],
   },
-  // 2494104990 tron-shasta
-  {
-    chainId: 2494104990,
-    rpcs: extractRpcEndpoint(2494104990, "https://api.shasta.trongrid.io"),
-    startBlock: 44847100,
-    contracts: [
-      {
-        name: "ORMPUpgradeablePort",
-        address: "0x9a80B8a27Ea73BD584336C9c200bb97190865482",
-      },
-      {
-        name: "ORMP",
-        address: "0x841B6b2F3148131Ac161d88edFb2C11F146e189F",
-      },
-    ],
-  },
+  // // 2494104990 tron-shasta
+  // {
+  //   chainId: 2494104990,
+  //   rpcs: extractRpcEndpoint(2494104990, "https://api.shasta.trongrid.io"),
+  //   startBlock: 44847100,
+  //   contracts: [
+  //     {
+  //       name: "Msgport",
+  //       address: "0x9a80B8a27Ea73BD584336C9c200bb97190865482",
+  //     },
+  //     {
+  //       name: "ORMP",
+  //       address: "0x841B6b2F3148131Ac161d88edFb2C11F146e189F",
+  //     },
+  //   ],
+  // },
 ];

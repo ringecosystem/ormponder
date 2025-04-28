@@ -30,25 +30,20 @@ export const tronFieldSelection = {
 
 export const ADDRESS_RELAYER = [
   "0x114890eB7386F94eae410186F20968bFAf66142a",
-  "0xFF9b99c9F654DAFB00a9EbEd42D221b261ceB8a6", // TZGjiJcoqUo6JSZeYvrwN6qvpEcLm21QbG
+  "0xB607762F43F1A72593715497d4A7dDD754c62a6A", // TSZgvR9xTGeG3RXcUKnWWcUAAAEskXdCHj
 ].map((a) => a.toLowerCase());
 export const ADDRESS_ORACLE = [
-  "0xBE01B76AB454aE2497aE43168b1F70C92Ac1C726",
-  "0x266Aa1Ef524b1D13C92bF3CC57cA7b12a0C72aB1", // TDULRJrJ2bbsvW3KKtEnnq9moPn5PyUWpd
+  "0xB49E82067a54b3E8c5D9Db2f378FdB6892C04D2E",
+  "0x985BDdbC7E66964f131E3161BA8864f481cBCb2D", // TPromBxYmvqGe73kDxHDhLGEGgoRhwkQsk
 ].map((a) => a.toLowerCase());
 export const ADDRESS_SIGNATURE = [
   "0x13b2211a7cA45Db2808F6dB05557ce5347e3634e",
   "0x5C5c383FEbE62F377F8c0eA1de97F2a2Ba102e98", // TJPZeFEdc4TBEcNbku5xVZLQ6B2Q1oGnd1
+  "0x924A4b87900A8CE8F8Cf62360Db047C4e4fFC1a3", // Tron Shasta TPJifBA5MvFf918VYnajd2XmEept4iBX55
 ].map((a) => a.toLowerCase());
 
 export type EvmFieldSelection = typeof evmFieldSelection;
 export type TronFieldSelection = typeof tronFieldSelection;
-
-export enum ProgressId {
-  total = "total",
-  inflight = "inflight",
-  failed = "failed",
-}
 
 export interface EventInfo {
   id: string;
@@ -64,8 +59,3 @@ export interface HandlerLifecycle {
   ormpContractConfig: OrmpContractConfig;
 }
 
-export interface MessageProgressCount {
-  total: bigint;
-  inflight: bigint;
-  failed: bigint;
-}

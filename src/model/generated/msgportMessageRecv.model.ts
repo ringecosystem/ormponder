@@ -1,8 +1,8 @@
-import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, BigIntColumn as BigIntColumn_, StringColumn as StringColumn_, IntColumn as IntColumn_} from "@subsquid/typeorm-store"
+import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, BigIntColumn as BigIntColumn_, StringColumn as StringColumn_, IntColumn as IntColumn_, BooleanColumn as BooleanColumn_} from "@subsquid/typeorm-store"
 
 @Entity_()
-export class ORMPUpgradeablePortMessageSent {
-    constructor(props?: Partial<ORMPUpgradeablePortMessageSent>) {
+export class MsgportMessageRecv {
+    constructor(props?: Partial<MsgportMessageRecv>) {
         Object.assign(this, props)
     }
 
@@ -27,27 +27,15 @@ export class ORMPUpgradeablePortMessageSent {
     @StringColumn_({nullable: false})
     portAddress!: string
 
-    @StringColumn_({nullable: false})
-    transactionFrom!: string
-
     @BigIntColumn_({nullable: false})
     chainId!: bigint
 
     @StringColumn_({nullable: false})
     msgId!: string
 
-    @StringColumn_({nullable: false})
-    fromDapp!: string
-
-    @BigIntColumn_({nullable: false})
-    toChainId!: bigint
+    @BooleanColumn_({nullable: false})
+    result!: boolean
 
     @StringColumn_({nullable: false})
-    toDapp!: string
-
-    @StringColumn_({nullable: false})
-    message!: string
-
-    @StringColumn_({nullable: false})
-    params!: string
+    returnData!: string
 }

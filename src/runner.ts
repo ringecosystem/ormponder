@@ -154,7 +154,7 @@ export class MsgscanIndexerEvmRunner {
 
           try {
             switch (ormpContractConfig.name.toLowerCase()) {
-              case "ormpupgradeableport":
+              case "msgport":
                 await new MsgportEvmHandler(ctx, lifecycle).handle(event);
                 break;
               case "ormp":

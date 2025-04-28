@@ -1,4 +1,4 @@
-import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, BigIntColumn as BigIntColumn_, StringColumn as StringColumn_, BooleanColumn as BooleanColumn_} from "@subsquid/typeorm-store"
+import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, BigIntColumn as BigIntColumn_, StringColumn as StringColumn_, IntColumn as IntColumn_, BooleanColumn as BooleanColumn_} from "@subsquid/typeorm-store"
 
 @Entity_()
 export class ORMPMessageAccepted {
@@ -17,6 +17,9 @@ export class ORMPMessageAccepted {
 
     @BigIntColumn_({nullable: false})
     blockTimestamp!: bigint
+
+    @IntColumn_({nullable: false})
+    logIndex!: number
 
     @StringColumn_({nullable: false})
     msgHash!: string

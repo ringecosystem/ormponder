@@ -18,8 +18,9 @@ type ORMPMessageAccepted @entity{
   blockNumber: BigInt!
   transactionHash: String!
   blockTimestamp: BigInt!
-
+  logIndex: Int!
   msgHash: String!
+
   channel: String!
   index: BigInt!
   fromChainId: BigInt!
@@ -64,7 +65,7 @@ type ORMPMessageDispatched @entity {
   dispatchResult: Boolean!
 }
 
-type ORMPUpgradeablePortMessageRecv @entity {
+type MsgportMessageRecv @entity {
   id: ID!
   blockNumber: BigInt!
   transactionHash: String!
@@ -79,7 +80,7 @@ type ORMPUpgradeablePortMessageRecv @entity {
   returnData: String!
 }
 
-type ORMPUpgradeablePortMessageSent @entity {
+type MsgportMessageSent @entity {
   id: ID!
   blockNumber: BigInt!
   transactionHash: String!
