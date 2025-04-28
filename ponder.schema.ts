@@ -1,112 +1,115 @@
-import { createSchema } from "@ponder/core";
+import { onchainTable } from "ponder";
 
-export default createSchema((p) => ({
-  // === msgport
-  MessageSent: p.createTable({
-    id: p.string(),
-    blockNumber: p.bigint(),
-    blockTimestamp: p.bigint(),
-    transactionHash: p.string(),
+// === msgport
+export const MessageSent = onchainTable("MessageSent", (p) => ({
+  id: p.text().primaryKey(),
+  blockNumber: p.bigint().notNull(),
+  blockTimestamp: p.bigint().notNull(),
+  transactionHash: p.hex().notNull(),
 
-    chainId: p.bigint(),
-    msgId: p.string(),
-    fromDapp: p.string(),
-    toChainId: p.bigint(),
-    toDapp: p.string(),
-    message: p.string(),
-    params: p.string(),
-  }),
-  MessageReceived: p.createTable({
-    id: p.string(),
-    blockNumber: p.bigint(),
-    blockTimestamp: p.bigint(),
-    transactionHash: p.string(),
-
-    chainId: p.bigint(),
-    msgId: p.string(),
-    result: p.boolean(),
-    returnData: p.string(),
-  }),
-  // === V2
-  MessageAcceptedV2: p.createTable({
-    id: p.string(),
-
-    blockNumber: p.bigint(),
-    blockTimestamp: p.bigint(),
-    transactionHash: p.string(),
-
-    logIndex: p.int(),
-    msgHash: p.string(),
-    // message struct
-    messageChannel: p.string(),
-    messageIndex: p.bigint(),
-    messageFromChainId: p.bigint(),
-    messageFrom: p.string(),
-    messageToChainId: p.bigint(),
-    messageTo: p.string(),
-    messageGasLimit: p.bigint(),
-    messageEncoded: p.string(),
-    // extra
-    oracle: p.hex().optional(),
-    oracleAssigned: p.boolean().optional(),
-    oracleAssignedFee: p.bigint().optional(),
-    oracleLogIndex: p.int().optional(),
-    relayer: p.hex().optional(),
-    relayerAssigned: p.boolean().optional(),
-    relayerAssignedFee: p.bigint().optional(),
-    relayerLogIndex: p.int().optional(),
-  }),
-  MessageDispatchedV2: p.createTable({
-    id: p.string(),
-    targetChainId: p.bigint(),
-
-    blockNumber: p.bigint(),
-    blockTimestamp: p.bigint(),
-    transactionHash: p.string(),
-
-    msgHash: p.string(),
-    dispatchResult: p.boolean(),
-  }),
-  MessageAssignedV2: p.createTable({
-    id: p.string(),
-
-    blockNumber: p.bigint(),
-    blockTimestamp: p.bigint(),
-    transactionHash: p.string(),
-
-    msgHash: p.string(),
-    oracle: p.hex(),
-    relayer: p.hex(),
-    oracleFee: p.bigint(),
-    relayerFee: p.bigint(),
-  }),
-  HashImportedV2: p.createTable({
-    id: p.string(),
-
-    blockNumber: p.bigint(),
-    blockTimestamp: p.bigint(),
-    transactionHash: p.string(),
-
-    srcChainId: p.bigint(),
-    channel: p.hex(),
-    msgIndex: p.bigint(),
-    targetChainId: p.bigint(),
-    oracle: p.hex(),
-    hash: p.string(),
-  }),
-  SignatureSubmittion: p.createTable({
-    id: p.string(),
-
-    blockNumber: p.bigint(),
-    blockTimestamp: p.bigint(),
-    transactionHash: p.string(),
-
-    srcChainId: p.bigint(),
-
-    channel: p.hex(),
-    msgIndex: p.bigint(),
-    signer: p.hex(),
-    signature: p.string(),
-    data: p.string(),
-  }),
+  chainId: p.bigint().notNull(),
+  msgId: p.hex().notNull(),
+  fromDapp: p.hex().notNull(),
+  toChainId: p.bigint().notNull(),
+  toDapp: p.hex().notNull(),
+  message: p.hex().notNull(),
+  params: p.hex().notNull(),
 }));
+
+export const MessageReceived = onchainTable("MessageReceived", (p) => ({
+  id: p.text().primaryKey(),
+  blockNumber: p.bigint().notNull(),
+  blockTimestamp: p.bigint().notNull(),
+  transactionHash: p.hex().notNull(),
+
+  chainId: p.bigint().notNull(),
+  msgId: p.hex().notNull(),
+  result: p.boolean().notNull(),
+  returnData: p.hex().notNull(),
+}));
+
+// === ormp
+
+export const MessageAcceptedV2 = onchainTable("MessageAcceptedV2", (p) => ({
+  id: p.text().primaryKey(),
+  blockNumber: p.bigint().notNull(),
+  blockTimestamp: p.bigint().notNull(),
+  transactionHash: p.hex().notNull(),
+
+  logIndex: p.integer().notNull(),
+  msgHash: p.hex().notNull(),
+  // message struct
+  messageChannel: p.hex().notNull(),
+  messageIndex: p.bigint().notNull(),
+  messageFromChainId: p.bigint().notNull(),
+  messageFrom: p.hex().notNull(),
+  messageToChainId: p.bigint().notNull(),
+  messageTo: p.hex().notNull(),
+  messageGasLimit: p.bigint().notNull(),
+  messageEncoded: p.hex().notNull(),
+
+  // extra
+  oracle: p.hex(),
+  oracleAssigned: p.boolean(),
+  oracleAssignedFee: p.bigint(),
+  oracleLogIndex: p.integer(),
+  relayer: p.hex(),
+  relayerAssigned: p.boolean(),
+  relayerAssignedFee: p.bigint(),
+  relayerLogIndex: p.integer(),
+}));
+
+export const MessageDispatchedV2 = onchainTable("MessageDispatchedV2", (p) => ({
+  id: p.text().primaryKey(),
+  targetChainId: p.bigint().notNull(),
+
+  blockNumber: p.bigint().notNull(),
+  blockTimestamp: p.bigint().notNull(),
+  transactionHash: p.hex().notNull(),
+
+  msgHash: p.hex().notNull(),
+  dispatchResult: p.boolean().notNull(),
+}));
+
+export const MessageAssignedV2 = onchainTable("MessageAssignedV2", (p) => ({
+  id: p.text().primaryKey(),
+  blockNumber: p.bigint().notNull(),
+  blockTimestamp: p.bigint().notNull(),
+  transactionHash: p.hex().notNull(),
+
+  msgHash: p.hex().notNull(),
+  oracle: p.hex().notNull(),
+  relayer: p.hex().notNull(),
+  oracleFee: p.bigint().notNull(),
+  relayerFee: p.bigint().notNull(),
+}));
+
+export const HashImportedV2 = onchainTable("HashImportedV2", (p) => ({
+  id: p.text().primaryKey(),
+  blockNumber: p.bigint().notNull(),
+  blockTimestamp: p.bigint().notNull(),
+  transactionHash: p.hex().notNull(),
+
+  srcChainId: p.bigint().notNull(),
+  channel: p.hex().notNull(),
+  msgIndex: p.bigint().notNull(),
+  targetChainId: p.bigint().notNull(),
+  oracle: p.hex().notNull(),
+  hash: p.hex().notNull(),
+}));
+
+export const SignatureSubmittion = onchainTable("SignatureSubmittion", (p) => ({
+  id: p.text().primaryKey(),
+  blockNumber: p.bigint().notNull(),
+  blockTimestamp: p.bigint().notNull(),
+  transactionHash: p.hex().notNull(),
+
+  srcChainId: p.bigint().notNull(),
+
+  channel: p.hex().notNull(),
+  msgIndex: p.bigint().notNull(),
+  signer: p.hex().notNull(),
+  signature: p.hex().notNull(),
+  data: p.hex().notNull(),
+}));
+

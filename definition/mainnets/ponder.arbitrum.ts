@@ -4,16 +4,17 @@ import { http } from "viem";
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
-const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const BLAST_API_KEY = process.env.BLAST_API_KEY;
-const MAX_REQUESTS_PER_SECOND = 5;
 const FAST_MAX_REQUESTS_PER_SECOND = 20;
 
 export default createConfig({
   networks: {
     arbitrum: {
       chainId: 42161,
-      transport: http(process.env.ENDPOINT_42161 || `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`),
+      transport: http(
+        process.env.ENDPOINT_42161 ||
+          `https://arbitrum-one.blastapi.io/${BLAST_API_KEY}`
+      ),
       maxRequestsPerSecond: FAST_MAX_REQUESTS_PER_SECOND,
     },
   },

@@ -367,4 +367,4 @@ export const MsgportAbi = [
     stateMutability: "view",
     type: "function",
   },
-];
+] as const;

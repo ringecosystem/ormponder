@@ -4,17 +4,18 @@ import { http } from "viem";
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
-const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const BLAST_API_KEY = process.env.BLAST_API_KEY;
 const MAX_REQUESTS_PER_SECOND = 5;
-const FAST_MAX_REQUESTS_PER_SECOND = 20;
 
 export default createConfig({
   networks: {
     blast: {
       chainId: 81457,
       // transport: http("https://rpc.blast.io"),
-      transport: http(process.env.ENDPOINT_81457 || `https://blastl2-mainnet.blastapi.io/${BLAST_API_KEY}`),
+      transport: http(
+        process.env.ENDPOINT_81457 ||
+          `https://blastl2-mainnet.blastapi.io/${BLAST_API_KEY}`
+      ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },

@@ -1,21 +1,21 @@
-import {createConfig} from "@ponder/core";
-import {http} from "viem";
+import { createConfig, loadBalance } from "ponder";
+import { http } from "viem";
 
-import {ORMPAbi as ORMPAbiV2} from "./abis/v2/ORMPAbi";
+import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
-import {SignaturePubAbi} from "./abis/v2/SignaturePubAbi";
+import { SignaturePubAbi } from "./abis/v2/SignaturePubAbi";
 
-const INFURA_API_KEY = process.env.INFURA_API_KEY;
-const BLAST_API_KEY = process.env.BLAST_API_KEY;
 const MAX_REQUESTS_PER_SECOND = 5;
-const FAST_MAX_REQUESTS_PER_SECOND = 20;
 
 export default createConfig({
   networks: {
     darwinia: {
       chainId: 46,
-      transport: http(process.env.ENDPOINT_46 || "http://c2.darwinia-rpc.itering.io:9944/"),
-      // transport: http("https://hrpc.darwinia.network/darwinia"),
+      transport: loadBalance([
+        http(
+          process.env.ENDPOINT_46 || "http://c2.darwinia-rpc.itering.io:9944/"
+        ),
+      ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },
@@ -28,9 +28,16 @@ export default createConfig({
           startBlock: 2830139,
         },
       },
-      filter: {
-        event: ["MessageSent", "MessageRecv"],
-      },
+      filter: [
+        {
+          event: "MessageSent",
+          args: {},
+        },
+        {
+          event: "MessageRecv",
+          args: {},
+        },
+      ],
     },
     // === V2
     ORMPV2: {
@@ -41,14 +48,12 @@ export default createConfig({
           startBlock: 2830100,
         },
       },
-      filter: {
-        event: [
-          "MessageAccepted",
-          "MessageDispatched",
-          "MessageAssigned",
-          "HashImported",
-        ],
-      },
+      filter: [
+        {event: "MessageAccepted", args: {}},
+        {event: "MessageDispatched", args: {}},
+        {event: "MessageAssigned", args: {}},
+        {event: "HashImported", args: {}},
+      ],
     },
     SignaturePub: {
       abi: SignaturePubAbi,

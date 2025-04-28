@@ -4,16 +4,15 @@ import { http } from "viem";
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
-const INFURA_API_KEY = process.env.INFURA_API_KEY;
-const BLAST_API_KEY = process.env.BLAST_API_KEY;
 const MAX_REQUESTS_PER_SECOND = 5;
-const FAST_MAX_REQUESTS_PER_SECOND = 20;
 
 export default createConfig({
   networks: {
     tron: {
       chainId: 728126428,
-      transport: http(process.env.ENDPOINT_728126428 || "https://api.trongrid.io/jsonrpc"),
+      transport: http(
+        process.env.ENDPOINT_728126428 || "https://api.trongrid.io/jsonrpc"
+      ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },

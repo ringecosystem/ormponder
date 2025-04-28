@@ -1,13 +1,10 @@
-import {createConfig} from "@ponder/core";
-import {http} from "viem";
+import { createConfig } from "@ponder/core";
+import { http } from "viem";
 
-import {ORMPAbi as ORMPAbiV2} from "./abis/v2/ORMPAbi";
+import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
 import { MsgportAbi } from "./abis/v2/MsgportAbi";
 
-const INFURA_API_KEY = process.env.INFURA_API_KEY;
-const BLAST_API_KEY = process.env.BLAST_API_KEY;
 const MAX_REQUESTS_PER_SECOND = 5;
-const FAST_MAX_REQUESTS_PER_SECOND = 20;
 
 export default createConfig({
   networks: {
@@ -15,7 +12,9 @@ export default createConfig({
       chainId: 1284,
       // transport: http(`https://moonbeam.blastapi.io/${BLAST_API_KEY}`),
       // transport: http(`https://hrpc.darwinia.network/moonbeam`),
-      transport: http(process.env.ENDPOINT_1284 || `https://moonbeam.api.onfinality.io/public`),
+      transport: http(
+        process.env.ENDPOINT_1284 || `https://moonbeam.api.onfinality.io/public`
+      ),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },

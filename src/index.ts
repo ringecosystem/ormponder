@@ -1,11 +1,21 @@
-import { ponder } from "@/generated";
-import * as address from './address.local'
+import { ponder } from "ponder:registry";
+import {
+  MessageSent,
+  MessageReceived,
+  MessageAcceptedV2,
+  MessageDispatchedV2,
+  MessageAssignedV2,
+  HashImportedV2,
+  SignatureSubmittion,
+} from "ponder:schema";
+
+import * as address from "./address.local";
 
 ponder.on("Msgport:MessageSent", async ({ event, context }) => {
-  const { MessageSent } = context.db;
-  await MessageSent.create({
-    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
-    data: {
+  await context.db
+    .insert(MessageSent)
+    .values({
+      id: `${context.network.chainId}-${event.block.number}-${event.transaction.transactionIndex}-${event.log.logIndex}`,
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
@@ -17,15 +27,16 @@ ponder.on("Msgport:MessageSent", async ({ event, context }) => {
       toDapp: event.args.toDapp,
       message: event.args.message,
       params: event.args.params,
-    },
-  });
+    })
+    .onConflictDoNothing();
 });
 
 ponder.on("Msgport:MessageRecv", async ({ event, context }) => {
-  const { MessageReceived } = context.db;
-  await MessageReceived.create({
-    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
-    data: {
+  await context.db
+    .insert(MessageReceived)
+    .values({
+      id: `${context.network.chainId}-${event.block.number}-${event.transaction.transactionIndex}-${event.log.logIndex}`,
+
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
@@ -34,20 +45,19 @@ ponder.on("Msgport:MessageRecv", async ({ event, context }) => {
       msgId: event.args.msgId,
       result: event.args.result,
       returnData: event.args.returnData,
-    },
-  });
+    })
+    .onConflictDoNothing();
 });
 
 ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
-  const { MessageAcceptedV2 } = context.db;
   const message = event.args.message;
-  await MessageAcceptedV2.create({
-    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
-    data: {
+  await context.db
+    .insert(MessageAcceptedV2)
+    .values({
+      id: event.args.msgHash,
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
-
       logIndex: event.log.logIndex,
       msgHash: event.args.msgHash,
       messageChannel: message.channel,
@@ -58,15 +68,15 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
       messageTo: message.to,
       messageGasLimit: message.gasLimit,
       messageEncoded: message.encoded,
-    },
-  });
+    })
+    .onConflictDoNothing();
 });
 
 ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
-  const { MessageDispatchedV2 } = context.db;
-  await MessageDispatchedV2.create({
-    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
-    data: {
+  await context.db
+    .insert(MessageDispatchedV2)
+    .values({
+      id: `${context.network.chainId}-${event.block.number}-${event.transaction.transactionIndex}-${event.log.logIndex}`,
       targetChainId: BigInt(context.network.chainId),
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
@@ -74,15 +84,15 @@ ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
 
       msgHash: event.args.msgHash,
       dispatchResult: event.args.dispatchResult,
-    },
-  });
+    })
+    .onConflictDoNothing();
 });
 
 ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
-  const { MessageAssignedV2, MessageAcceptedV2 } = context.db;
-  await MessageAssignedV2.create({
-    id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
-    data: {
+  await context.db
+    .insert(MessageAssignedV2)
+    .values({
+      id: `${context.network.chainId}-${event.block.number}-${event.transaction.transactionIndex}-${event.log.logIndex}`,
       blockNumber: event.block.number,
       blockTimestamp: event.block.timestamp,
       transactionHash: event.transaction.hash,
@@ -92,93 +102,78 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
       relayer: event.args.relayer,
       oracleFee: event.args.oracleFee,
       relayerFee: event.args.relayerFee,
-    },
-  });
-  // console.log(
-  //   event.args.relayer,
-  //   listenRelayer.includes(event.args.relayer),
-  //   context.network.name
-  // );
-  // filter other relayer
-  if (address.listenRelayer.includes(event.args.relayer)) {
-    await MessageAcceptedV2.updateMany({
-      where: {
-        msgHash: {
-          equals: event.args.msgHash,
-        },
-      },
-      data: {
-        relayer: event.args.relayer,
-        relayerAssigned: true,
-        relayerAssignedFee: event.args.relayerFee,
-        relayerLogIndex: event.log.logIndex,
-      },
+    })
+    .onConflictDoNothing();
+
+  if (
+    address.listenRelayer.some(
+      (item) => item.toLowerCase() === event.args.relayer.toLowerCase()
+    )
+  ) {
+    await context.db.update(MessageAcceptedV2, { id: event.args.msgHash }).set({
+      relayer: event.args.relayer,
+      relayerAssigned: true,
+      relayerAssignedFee: event.args.relayerFee,
+      relayerLogIndex: event.log.logIndex,
     });
   }
-  // console.log(
-  //   event.args.oracle,
-  //   listenRelayer.includes(event.args.oracle),
-  //   context.network.name
-  // );
-  // filter other oracle
-  if (address.listenOracle.includes(event.args.oracle)) {
-    await MessageAcceptedV2.updateMany({
-      where: {
-        msgHash: {
-          equals: event.args.msgHash,
-        },
-      },
-      data: {
-        oracle: event.args.oracle,
-        oracleAssigned: true,
-        oracleAssignedFee: event.args.oracleFee,
-        oracleLogIndex: event.log.logIndex,
-      },
+  if (
+    address.listenOracle.some(
+      (item) => item.toLowerCase() === event.args.oracle.toLowerCase()
+    )
+  ) {
+    await context.db.update(MessageAcceptedV2, { id: event.args.msgHash }).set({
+      oracle: event.args.oracle,
+      oracleAssigned: true,
+      oracleAssignedFee: event.args.oracleFee,
+      oracleLogIndex: event.log.logIndex,
     });
   }
 });
 
 ponder.on("ORMPV2:HashImported", async ({ event, context }) => {
-  const { HashImportedV2 } = context.db;
-  // filter other oracle
-  if (address.listenOracle.includes(event.args.oracle)) {
-    await HashImportedV2.create({
-      id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
-      data: {
+  await context.db
+    .insert(HashImportedV2)
+    .values({
+      id: `${context.network.chainId}-${event.block.number}-${event.transaction.transactionIndex}-${event.log.logIndex}`,
+      blockNumber: event.block.number,
+      blockTimestamp: event.block.timestamp,
+      transactionHash: event.transaction.hash,
+      srcChainId: event.args.chainId,
+      channel: event.args.channel,
+      msgIndex: event.args.msgIndex,
+      targetChainId: BigInt(context.network.chainId),
+      oracle: event.args.oracle,
+      hash: event.args.hash,
+    })
+    .onConflictDoNothing();
+});
+
+if (process.env["ORMPONDER_ENABLE_SIGNATURE"]) {
+  ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
+    if (
+      !address.listenSignature.some(
+        (item) => item.toLowerCase() === event.args.channel.toLowerCase()
+      )
+    ) {
+      return;
+    }
+
+    await context.db
+      .insert(SignatureSubmittion)
+      .values({
+        id: `${context.network.chainId}-${event.block.number}-${event.transaction.transactionIndex}-${event.log.logIndex}`,
         blockNumber: event.block.number,
         blockTimestamp: event.block.timestamp,
         transactionHash: event.transaction.hash,
+
         srcChainId: event.args.chainId,
         channel: event.args.channel,
         msgIndex: event.args.msgIndex,
-        targetChainId: BigInt(context.network.chainId),
-        oracle: event.args.oracle,
-        hash: event.args.hash,
-      },
-    });
-  }
-});
-
-if (process.env['ORMPONDER_ENABLE_SIGNATURE']) {
-  ponder.on("SignaturePub:SignatureSubmittion", async ({ event, context }) => {
-    const { SignatureSubmittion } = context.db;
-    // filter other channels
-    if (address.listenSignature.includes(event.args.channel)) {
-      await SignatureSubmittion.create({
-        id: `${context.network.chainId}-${event.block.number}-${event.log.transactionIndex}-${event.log.logIndex}`,
-        data: {
-          blockNumber: event.block.number,
-          blockTimestamp: event.block.timestamp,
-          transactionHash: event.transaction.hash,
-
-          srcChainId: event.args.chainId,
-          channel: event.args.channel,
-          msgIndex: event.args.msgIndex,
-          signer: event.args.signer,
-          signature: event.args.signature,
-          data: event.args.data,
-        },
-      });
-    }
+        signer: event.args.signer,
+        signature: event.args.signature,
+        data: event.args.data,
+      })
+      .onConflictDoNothing();
   });
 }
