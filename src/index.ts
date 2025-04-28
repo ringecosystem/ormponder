@@ -69,7 +69,21 @@ ponder.on("ORMPV2:MessageAccepted", async ({ event, context }) => {
       messageGasLimit: message.gasLimit,
       messageEncoded: message.encoded,
     })
-    .onConflictDoNothing();
+    .onConflictDoUpdate((row) => ({
+      blockNumber: event.block.number,
+      blockTimestamp: event.block.timestamp,
+      transactionHash: event.transaction.hash,
+      logIndex: event.log.logIndex,
+      msgHash: event.args.msgHash,
+      messageChannel: message.channel,
+      messageIndex: message.index,
+      messageFromChainId: message.fromChainId,
+      messageFrom: message.from,
+      messageToChainId: message.toChainId,
+      messageTo: message.to,
+      messageGasLimit: message.gasLimit,
+      messageEncoded: message.encoded,
+    }));
 });
 
 ponder.on("ORMPV2:MessageDispatched", async ({ event, context }) => {
@@ -105,6 +119,30 @@ ponder.on("ORMPV2:MessageAssigned", async ({ event, context }) => {
     })
     .onConflictDoNothing();
 
+  const existedAccepted = await context.db.find(MessageAcceptedV2, {
+    id: event.args.msgHash,
+  });
+  if (!existedAccepted) {
+    await context.db
+      .insert(MessageAcceptedV2)
+      .values({
+        id: event.args.msgHash,
+        blockNumber: event.block.number,
+        blockTimestamp: event.block.timestamp,
+        transactionHash: event.transaction.hash,
+        logIndex: -1,
+        msgHash: event.args.msgHash,
+        messageChannel: "0x",
+        messageIndex: 0n,
+        messageFromChainId: 0n,
+        messageFrom: "0x",
+        messageToChainId: 0n,
+        messageTo: "0x",
+        messageGasLimit: 0n,
+        messageEncoded: "0x",
+      })
+      .onConflictDoNothing();
+  }
   if (
     address.listenRelayer.some(
       (item) => item.toLowerCase() === event.args.relayer.toLowerCase()
