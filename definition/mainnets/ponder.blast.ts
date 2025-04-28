@@ -11,11 +11,12 @@ export default createConfig({
   networks: {
     blast: {
       chainId: 81457,
-      // transport: http("https://rpc.blast.io"),
-      transport: http(
-        process.env.ENDPOINT_81457 ||
-          `https://blastl2-mainnet.blastapi.io/${BLAST_API_KEY}`
-      ),
+      transport: loadBalance([
+        http(
+          process.env.ENDPOINT_81457 ||
+            `https://blastl2-mainnet.blastapi.io/${BLAST_API_KEY}`
+        ),
+      ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },
@@ -28,9 +29,10 @@ export default createConfig({
           startBlock: 4293849,
         },
       },
-      filter: {
-        event: ["MessageSent", "MessageRecv"],
-      },
+      filter: [
+        { event: "MessageSent", args: {} },
+        { event: "MessageRecv", args: {} },
+      ],
     },
     // === V2
     ORMPV2: {
@@ -41,14 +43,12 @@ export default createConfig({
           startBlock: 4293849,
         },
       },
-      filter: {
-        event: [
-          "MessageAccepted",
-          "MessageDispatched",
-          "MessageAssigned",
-          "HashImported",
-        ],
-      },
+      filter: [
+        { event: "MessageAccepted", args: {} },
+        { event: "MessageDispatched", args: {} },
+        { event: "MessageAssigned", args: {} },
+        { event: "HashImported", args: {} },
+      ],
     },
   },
 });

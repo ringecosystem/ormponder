@@ -1,4 +1,4 @@
-import { createConfig } from "@ponder/core";
+import { createConfig, loadBalance } from "@ponder/core";
 import { http } from "viem";
 
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
@@ -12,9 +12,12 @@ export default createConfig({
       chainId: 1284,
       // transport: http(`https://moonbeam.blastapi.io/${BLAST_API_KEY}`),
       // transport: http(`https://hrpc.darwinia.network/moonbeam`),
-      transport: http(
-        process.env.ENDPOINT_1284 || `https://moonbeam.api.onfinality.io/public`
-      ),
+      transport: loadBalance([
+        http(
+          process.env.ENDPOINT_1284 ||
+            `https://moonbeam.api.onfinality.io/public`
+        ),
+      ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },
@@ -27,9 +30,10 @@ export default createConfig({
           startBlock: 6294138,
         },
       },
-      filter: {
-        event: ["MessageSent", "MessageRecv"],
-      },
+      filter: [
+        { event: "MessageSent", args: {} },
+        { event: "MessageRecv", args: {} },
+      ],
     },
     // === V2
     ORMPV2: {
@@ -40,14 +44,12 @@ export default createConfig({
           startBlock: 6294138,
         },
       },
-      filter: {
-        event: [
-          "MessageAccepted",
-          "MessageDispatched",
-          "MessageAssigned",
-          "HashImported",
-        ],
-      },
+      filter: [
+        { event: "MessageAccepted", args: {} },
+        { event: "MessageDispatched", args: {} },
+        { event: "MessageAssigned", args: {} },
+        { event: "HashImported", args: {} },
+      ],
     },
   },
 });

@@ -18,7 +18,6 @@ export default createConfig({
         ),
         // http(`https://mainnet.infura.io/v3/${INFURA_API_KEY}`),
       ]),
-
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },
@@ -31,9 +30,10 @@ export default createConfig({
           startBlock: 20009590,
         },
       },
-      filter: {
-        event: ["MessageSent", "MessageRecv"],
-      },
+      filter: [
+        { event: "MessageSent", args: {} },
+        { event: "MessageRecv", args: {} },
+      ],
     },
     // === V2
     ORMPV2: {
@@ -44,14 +44,12 @@ export default createConfig({
           startBlock: 20009605,
         },
       },
-      filter: {
-        event: [
-          "MessageAccepted",
-          "MessageDispatched",
-          "MessageAssigned",
-          "HashImported",
-        ],
-      },
+      filter: [
+        { event: "MessageAccepted", args: {} },
+        { event: "MessageDispatched", args: {} },
+        { event: "MessageAssigned", args: {} },
+        { event: "HashImported", args: {} },
+      ],
     },
   },
 });

@@ -25,9 +25,10 @@ export default createConfig({
           startBlock: 59565,
         },
       },
-      filter: {
-        event: ["MessageSent", "MessageRecv"],
-      },
+      filter: [
+        { event: "MessageSent", args: {} },
+        { event: "MessageRecv", args: {} },
+      ],
     },
     // === V2
     ORMPV2: {
@@ -38,14 +39,12 @@ export default createConfig({
           startBlock: 59565,
         },
       },
-      filter: {
-        event: [
-          "MessageAccepted",
-          "MessageDispatched",
-          "MessageAssigned",
-          "HashImported",
-        ],
-      },
+      filter: [
+        { event: "MessageAccepted", args: {} },
+        { event: "MessageDispatched", args: {} },
+        { event: "MessageAssigned", args: {} },
+        { event: "HashImported", args: {} },
+      ],
     },
   },
 });

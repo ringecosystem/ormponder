@@ -29,14 +29,8 @@ export default createConfig({
         },
       },
       filter: [
-        {
-          event: "MessageSent",
-          args: {},
-        },
-        {
-          event: "MessageRecv",
-          args: {},
-        },
+        { event: "MessageSent", args: {} },
+        { event: "MessageRecv", args: {} },
       ],
     },
     // === V2
@@ -49,10 +43,10 @@ export default createConfig({
         },
       },
       filter: [
-        {event: "MessageAccepted", args: {}},
-        {event: "MessageDispatched", args: {}},
-        {event: "MessageAssigned", args: {}},
-        {event: "HashImported", args: {}},
+        { event: "MessageAccepted", args: {} },
+        { event: "MessageDispatched", args: {} },
+        { event: "MessageAssigned", args: {} },
+        { event: "HashImported", args: {} },
       ],
     },
     SignaturePub: {
