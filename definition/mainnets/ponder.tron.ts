@@ -1,4 +1,4 @@
-import { createConfig } from "@ponder/core";
+import { createConfig, loadBalance } from "ponder";
 import { http } from "viem";
 
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
@@ -10,9 +10,11 @@ export default createConfig({
   networks: {
     tron: {
       chainId: 728126428,
-      transport: http(
-        process.env.ENDPOINT_728126428 || "https://api.trongrid.io/jsonrpc"
-      ),
+      transport: loadBalance([
+        http(
+          process.env.ENDPOINT_728126428 || "https://api.trongrid.io/jsonrpc"
+        ),
+      ]),
       maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
     },
   },

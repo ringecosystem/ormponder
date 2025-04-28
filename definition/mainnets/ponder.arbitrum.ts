@@ -1,4 +1,4 @@
-import { createConfig, loadBalance } from "@ponder/core";
+import { createConfig, loadBalance } from "ponder";
 import { http } from "viem";
 
 import { ORMPAbi as ORMPAbiV2 } from "./abis/v2/ORMPAbi";
