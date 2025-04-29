@@ -12,6 +12,8 @@ docker compose down || true
 
 docker compose up -d || true
 
+sleep 2
+
 if [ "$1" = "force" ]; then
   npx sqd codegen
   npm run migrate:db -- --force

@@ -1,5 +1,5 @@
-module.exports = class Data1745887079414 {
-    name = 'Data1745887079414'
+module.exports = class Data1745888239541 {
+    name = 'Data1745888239541'
 
     async up(db) {
         await db.query(`CREATE TABLE "ormp_hash_imported" ("id" character varying NOT NULL, "block_number" numeric NOT NULL, "transaction_hash" text NOT NULL, "block_timestamp" numeric NOT NULL, "chain_id" numeric NOT NULL, "src_chain_id" numeric NOT NULL, "target_chain_id" numeric NOT NULL, "oracle" text NOT NULL, "channel" text NOT NULL, "msg_index" numeric NOT NULL, "hash" text NOT NULL, CONSTRAINT "PK_f77b5e871e898bb5858336c2e28" PRIMARY KEY ("id"))`)
