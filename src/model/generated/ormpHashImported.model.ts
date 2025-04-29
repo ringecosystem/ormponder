@@ -19,6 +19,9 @@ export class ORMPHashImported {
     blockTimestamp!: bigint
 
     @BigIntColumn_({nullable: false})
+    chainId!: bigint
+
+    @BigIntColumn_({nullable: false})
     srcChainId!: bigint
 
     @BigIntColumn_({nullable: false})

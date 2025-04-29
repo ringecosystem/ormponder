@@ -18,6 +18,9 @@ export class ORMPMessageAccepted {
     @BigIntColumn_({nullable: false})
     blockTimestamp!: bigint
 
+    @BigIntColumn_({nullable: false})
+    chainId!: bigint
+
     @IntColumn_({nullable: false})
     logIndex!: number
 

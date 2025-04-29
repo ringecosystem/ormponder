@@ -67,6 +67,7 @@ export class OrmpEvmHandler {
         blockNumber: BigInt(eventLog.block.height),
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(eventLog.transactionHash),
+        chainId: eventInfo.chainId,
 
         srcChainId: event.chainId,
         channel: event.channel,
@@ -85,6 +86,7 @@ export class OrmpEvmHandler {
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(eventLog.transactionHash),
         logIndex: eventLog.logIndex,
+        chainId: eventInfo.chainId,
 
         msgHash: helpers.stdHashString(event.msgHash),
         channel: event.message.channel,
@@ -111,6 +113,7 @@ export class OrmpEvmHandler {
         blockNumber: BigInt(eventLog.block.height),
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(eventLog.transactionHash),
+        chainId: eventInfo.chainId,
 
         msgHash: helpers.stdHashString(event.msgHash),
         oracle: event.oracle,
@@ -128,6 +131,7 @@ export class OrmpEvmHandler {
         blockNumber: BigInt(eventLog.block.height),
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(eventLog.transactionHash),
+        chainId: eventInfo.chainId,
 
         targetChainId: BigInt(ormpContractChain.chainId),
         msgHash: helpers.stdHashString(event.msgHash),
@@ -198,6 +202,7 @@ export class OrmpTronHandler {
         blockNumber: BigInt(eventLog.block.height),
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(tx.hash),
+        chainId: eventInfo.chainId,
 
         srcChainId: event.chainId,
         channel: event.channel,
@@ -216,6 +221,7 @@ export class OrmpTronHandler {
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(tx.hash),
         logIndex: eventLog.logIndex,
+        chainId: eventInfo.chainId,
 
         msgHash: helpers.stdHashString(event.msgHash),
         channel: event.message.channel,
@@ -242,6 +248,7 @@ export class OrmpTronHandler {
         blockNumber: BigInt(eventLog.block.height),
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(tx.hash),
+        chainId: eventInfo.chainId,
 
         msgHash: helpers.stdHashString(event.msgHash),
         oracle: event.oracle,
@@ -259,6 +266,7 @@ export class OrmpTronHandler {
         blockNumber: BigInt(eventLog.block.height),
         blockTimestamp: BigInt(eventLog.block.timestamp),
         transactionHash: helpers.stdHashString(tx.hash),
+        chainId: eventInfo.chainId,
 
         targetChainId: BigInt(ormpContractChain.chainId),
         msgHash: helpers.stdHashString(event.msgHash),

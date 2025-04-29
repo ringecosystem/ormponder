@@ -18,6 +18,9 @@ export class ORMPMessageAssigned {
     @BigIntColumn_({nullable: false})
     blockTimestamp!: bigint
 
+    @BigIntColumn_({nullable: false})
+    chainId!: bigint
+
     @StringColumn_({nullable: false})
     msgHash!: string
 

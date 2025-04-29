@@ -24,14 +24,17 @@ export class MsgportMessageSent {
     @IntColumn_({nullable: false})
     logIndex!: number
 
+    @BigIntColumn_({nullable: false})
+    chainId!: bigint
+
     @StringColumn_({nullable: false})
     portAddress!: string
 
-    @StringColumn_({nullable: false})
-    transactionFrom!: string
+    @StringColumn_({nullable: true})
+    transactionFrom!: string | undefined | null
 
     @BigIntColumn_({nullable: false})
-    chainId!: bigint
+    fromChainId!: bigint
 
     @StringColumn_({nullable: false})
     msgId!: string

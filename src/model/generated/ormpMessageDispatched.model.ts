@@ -12,11 +12,14 @@ export class ORMPMessageDispatched {
     @BigIntColumn_({nullable: false})
     blockNumber!: bigint
 
+    @StringColumn_({nullable: false})
+    transactionHash!: string
+
     @BigIntColumn_({nullable: false})
     blockTimestamp!: bigint
 
-    @StringColumn_({nullable: false})
-    transactionHash!: string
+    @BigIntColumn_({nullable: false})
+    chainId!: bigint
 
     @BigIntColumn_({nullable: false})
     targetChainId!: bigint

@@ -24,11 +24,11 @@ export class MsgportMessageRecv {
     @IntColumn_({nullable: false})
     logIndex!: number
 
-    @StringColumn_({nullable: false})
-    portAddress!: string
-
     @BigIntColumn_({nullable: false})
     chainId!: bigint
+
+    @StringColumn_({nullable: false})
+    portAddress!: string
 
     @StringColumn_({nullable: false})
     msgId!: string
