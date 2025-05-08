@@ -294,8 +294,7 @@ class OrmpHandler {
   async storeMessageAssigned(event: ORMPMessageAssigned) {
     await this.store.insert(event);
 
-    const relayer = event.relayer;
-    if (ADDRESS_RELAYER.includes(relayer)) {
+    if (ADDRESS_RELAYER.includes(event.relayer.toLowerCase())) {
       const storedMessageAccepted = await this.store.findOne(
         ORMPMessageAccepted,
         {
@@ -310,7 +309,7 @@ class OrmpHandler {
       }
     }
 
-    if (ADDRESS_ORACLE.includes(relayer)) {
+    if (ADDRESS_ORACLE.includes(event.oracle.toLowerCase())) {
       const storedMessageAccepted = await this.store.findOne(
         ORMPMessageAccepted,
         {
